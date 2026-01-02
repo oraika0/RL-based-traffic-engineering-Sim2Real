@@ -1,0 +1,3 @@
+Topology Name: HurricaneElectric
+MAX Number of Link Failures: 4
+num_topologies_x_link_failure: 20

@@ -1,0 +1,23 @@
+
+stdbuf -o0 iperf3 -c 10.0.0.1 -p 16001 -u -b 3188.010k -w 256k -t 80000 -i 0  &
+sleep 0.4
+stdbuf -o0 iperf3 -c 10.0.0.3 -p 16003 -u -b 2072.083k -w 256k -t 80000 -i 0  &
+sleep 0.4
+stdbuf -o0 iperf3 -c 10.0.0.7 -p 16007 -u -b 6897.402k -w 256k -t 80000 -i 0  &
+sleep 0.4
+stdbuf -o0 iperf3 -c 10.0.0.8 -p 16008 -u -b 6227.505k -w 256k -t 80000 -i 0  &
+sleep 0.4
+stdbuf -o0 iperf3 -c 10.0.0.10 -p 16010 -u -b 3871.221k -w 256k -t 80000 -i 0  &
+sleep 0.4
+stdbuf -o0 iperf3 -c 10.0.0.13 -p 16013 -u -b 9348.158k -w 256k -t 80000 -i 0  &
+sleep 0.4
+stdbuf -o0 iperf3 -c 10.0.0.15 -p 16015 -u -b 553.869k -w 256k -t 80000 -i 0  &
+sleep 0.4
+stdbuf -o0 iperf3 -c 10.0.0.21 -p 16021 -u -b 3221.124k -w 256k -t 80000 -i 0  &
+sleep 0.4
+stdbuf -o0 iperf3 -c 10.0.0.24 -p 16024 -u -b 8533.032k -w 256k -t 80000 -i 0  &
+sleep 0.4
+stdbuf -o0 iperf3 -c 10.0.0.26 -p 16026 -u -b 1556.911k -w 256k -t 80000 -i 0  &
+sleep 0.4
+stdbuf -o0 iperf3 -c 10.0.0.28 -p 16028 -u -b 597.662k -w 256k -t 80000 -i 0  &
+sleep 0.4

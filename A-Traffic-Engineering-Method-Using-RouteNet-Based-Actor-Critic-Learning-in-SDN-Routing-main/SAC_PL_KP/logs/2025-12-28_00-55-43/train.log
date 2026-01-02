@@ -1,0 +1,395 @@
+2025-12-28 00:55:46,605 | INFO | 開始訓練
+2025-12-28 00:55:46,606 | INFO | ============================================================
+2025-12-28 00:55:46,606 | INFO | Episode 0 START
+2025-12-28 00:55:47,047 | INFO | Episode 0 | Train topo 0 time: 0.44 s
+2025-12-28 00:55:47,280 | INFO | Episode 0 | Train topo 1 time: 0.23 s
+2025-12-28 00:55:47,577 | INFO | Episode 0 | Train topo 2 time: 0.30 s
+2025-12-28 00:55:47,578 | INFO | Episode 0 | Total train time: 0.97 s
+2025-12-28 00:55:56,454 | INFO | Episode 0 | Eval time: 8.88 s
+2025-12-28 00:55:56,540 | INFO | Episode 0 END | Total time: 9.93 s | Train: 0.97 s | Eval: 8.88 s
+2025-12-28 00:55:56,541 | INFO | ============================================================
+2025-12-28 00:55:56,541 | INFO | Episode 1 START
+2025-12-28 00:55:56,867 | INFO | Episode 1 | Train topo 0 time: 0.33 s
+2025-12-28 00:55:57,166 | INFO | Episode 1 | Train topo 1 time: 0.30 s
+2025-12-28 00:55:57,457 | INFO | Episode 1 | Train topo 2 time: 0.29 s
+2025-12-28 00:55:57,457 | INFO | Episode 1 | Total train time: 0.92 s
+2025-12-28 00:56:06,720 | INFO | Episode 1 | Eval time: 9.26 s
+2025-12-28 00:56:06,805 | INFO | Episode 1 END | Total time: 10.26 s | Train: 0.92 s | Eval: 9.26 s
+2025-12-28 00:56:06,805 | INFO | ============================================================
+2025-12-28 00:56:06,805 | INFO | Episode 2 START
+2025-12-28 00:56:07,132 | INFO | Episode 2 | Train topo 0 time: 0.33 s
+2025-12-28 00:56:07,424 | INFO | Episode 2 | Train topo 1 time: 0.29 s
+2025-12-28 00:56:07,727 | INFO | Episode 2 | Train topo 2 time: 0.30 s
+2025-12-28 00:56:07,727 | INFO | Episode 2 | Total train time: 0.92 s
+2025-12-28 00:56:16,246 | INFO | Episode 2 | Eval time: 8.52 s
+2025-12-28 00:56:16,315 | INFO | Episode 2 END | Total time: 9.51 s | Train: 0.92 s | Eval: 8.52 s
+2025-12-28 00:56:16,316 | INFO | ============================================================
+2025-12-28 00:56:16,316 | INFO | Episode 3 START
+2025-12-28 00:56:16,581 | INFO | Episode 3 | Train topo 0 time: 0.27 s
+2025-12-28 00:56:16,823 | INFO | Episode 3 | Train topo 1 time: 0.24 s
+2025-12-28 00:56:17,092 | INFO | Episode 3 | Train topo 2 time: 0.27 s
+2025-12-28 00:56:17,092 | INFO | Episode 3 | Total train time: 0.78 s
+2025-12-28 00:56:25,659 | INFO | Episode 3 | Eval time: 8.57 s
+2025-12-28 00:56:25,737 | INFO | Episode 3 END | Total time: 9.42 s | Train: 0.78 s | Eval: 8.57 s
+2025-12-28 00:56:25,738 | INFO | ============================================================
+2025-12-28 00:56:25,738 | INFO | Episode 4 START
+2025-12-28 00:56:26,066 | INFO | Episode 4 | Train topo 0 time: 0.33 s
+2025-12-28 00:56:26,359 | INFO | Episode 4 | Train topo 1 time: 0.29 s
+2025-12-28 00:56:26,655 | INFO | Episode 4 | Train topo 2 time: 0.30 s
+2025-12-28 00:56:26,655 | INFO | Episode 4 | Total train time: 0.92 s
+2025-12-28 00:56:35,594 | INFO | Episode 4 | Eval time: 8.94 s
+2025-12-28 00:56:35,674 | INFO | Episode 4 END | Total time: 9.94 s | Train: 0.92 s | Eval: 8.94 s
+2025-12-28 00:56:35,674 | INFO | ============================================================
+2025-12-28 00:56:35,674 | INFO | Episode 5 START
+2025-12-28 00:56:35,998 | INFO | Episode 5 | Train topo 0 time: 0.32 s
+2025-12-28 00:56:36,286 | INFO | Episode 5 | Train topo 1 time: 0.29 s
+2025-12-28 00:56:36,578 | INFO | Episode 5 | Train topo 2 time: 0.29 s
+2025-12-28 00:56:36,578 | INFO | Episode 5 | Total train time: 0.90 s
+2025-12-28 00:56:45,496 | INFO | Episode 5 | Eval time: 8.92 s
+2025-12-28 00:56:45,576 | INFO | Episode 5 END | Total time: 9.90 s | Train: 0.90 s | Eval: 8.92 s
+2025-12-28 00:56:45,576 | INFO | ============================================================
+2025-12-28 00:56:45,576 | INFO | Episode 6 START
+2025-12-28 00:56:45,905 | INFO | Episode 6 | Train topo 0 time: 0.33 s
+2025-12-28 00:56:46,193 | INFO | Episode 6 | Train topo 1 time: 0.29 s
+2025-12-28 00:56:46,486 | INFO | Episode 6 | Train topo 2 time: 0.29 s
+2025-12-28 00:56:46,486 | INFO | Episode 6 | Total train time: 0.91 s
+2025-12-28 00:56:55,418 | INFO | Episode 6 | Eval time: 8.93 s
+2025-12-28 00:56:55,499 | INFO | Episode 6 END | Total time: 9.92 s | Train: 0.91 s | Eval: 8.93 s
+2025-12-28 00:56:55,499 | INFO | ============================================================
+2025-12-28 00:56:55,500 | INFO | Episode 7 START
+2025-12-28 00:56:55,826 | INFO | Episode 7 | Train topo 0 time: 0.33 s
+2025-12-28 00:56:56,124 | INFO | Episode 7 | Train topo 1 time: 0.30 s
+2025-12-28 00:56:56,417 | INFO | Episode 7 | Train topo 2 time: 0.29 s
+2025-12-28 00:56:56,417 | INFO | Episode 7 | Total train time: 0.92 s
+2025-12-28 00:57:05,381 | INFO | Episode 7 | Eval time: 8.96 s
+2025-12-28 00:57:05,461 | INFO | Episode 7 END | Total time: 9.96 s | Train: 0.92 s | Eval: 8.96 s
+2025-12-28 00:57:05,461 | INFO | ============================================================
+2025-12-28 00:57:05,461 | INFO | Episode 8 START
+2025-12-28 00:57:05,783 | INFO | Episode 8 | Train topo 0 time: 0.32 s
+2025-12-28 00:57:06,073 | INFO | Episode 8 | Train topo 1 time: 0.29 s
+2025-12-28 00:57:06,368 | INFO | Episode 8 | Train topo 2 time: 0.30 s
+2025-12-28 00:57:06,369 | INFO | Episode 8 | Total train time: 0.91 s
+2025-12-28 00:57:15,267 | INFO | Episode 8 | Eval time: 8.90 s
+2025-12-28 00:57:15,352 | INFO | Episode 8 END | Total time: 9.89 s | Train: 0.91 s | Eval: 8.90 s
+2025-12-28 00:57:15,352 | INFO | ============================================================
+2025-12-28 00:57:15,353 | INFO | Episode 9 START
+2025-12-28 00:57:15,679 | INFO | Episode 9 | Train topo 0 time: 0.33 s
+2025-12-28 00:57:15,970 | INFO | Episode 9 | Train topo 1 time: 0.29 s
+2025-12-28 00:57:16,263 | INFO | Episode 9 | Train topo 2 time: 0.29 s
+2025-12-28 00:57:16,263 | INFO | Episode 9 | Total train time: 0.91 s
+2025-12-28 00:57:25,102 | INFO | Episode 9 | Eval time: 8.84 s
+2025-12-28 00:57:25,186 | INFO | Episode 9 END | Total time: 9.83 s | Train: 0.91 s | Eval: 8.84 s
+2025-12-28 00:57:25,186 | INFO | ============================================================
+2025-12-28 00:57:25,186 | INFO | Episode 10 START
+2025-12-28 00:57:25,511 | INFO | Episode 10 | Train topo 0 time: 0.32 s
+2025-12-28 00:57:25,795 | INFO | Episode 10 | Train topo 1 time: 0.28 s
+2025-12-28 00:57:26,082 | INFO | Episode 10 | Train topo 2 time: 0.29 s
+2025-12-28 00:57:26,083 | INFO | Episode 10 | Total train time: 0.90 s
+2025-12-28 00:57:35,016 | INFO | Episode 10 | Eval time: 8.93 s
+2025-12-28 00:57:35,091 | INFO | Episode 10 END | Total time: 9.90 s | Train: 0.90 s | Eval: 8.93 s
+2025-12-28 00:57:35,092 | INFO | ============================================================
+2025-12-28 00:57:35,092 | INFO | Episode 11 START
+2025-12-28 00:57:35,383 | INFO | Episode 11 | Train topo 0 time: 0.29 s
+2025-12-28 00:57:35,660 | INFO | Episode 11 | Train topo 1 time: 0.28 s
+2025-12-28 00:57:35,938 | INFO | Episode 11 | Train topo 2 time: 0.28 s
+2025-12-28 00:57:35,938 | INFO | Episode 11 | Total train time: 0.85 s
+2025-12-28 00:57:44,209 | INFO | Episode 11 | Eval time: 8.27 s
+2025-12-28 00:57:44,292 | INFO | Episode 11 END | Total time: 9.20 s | Train: 0.85 s | Eval: 8.27 s
+2025-12-28 00:57:44,292 | INFO | ============================================================
+2025-12-28 00:57:44,292 | INFO | Episode 12 START
+2025-12-28 00:57:44,598 | INFO | Episode 12 | Train topo 0 time: 0.31 s
+2025-12-28 00:57:44,871 | INFO | Episode 12 | Train topo 1 time: 0.27 s
+2025-12-28 00:57:45,122 | INFO | Episode 12 | Train topo 2 time: 0.25 s
+2025-12-28 00:57:45,123 | INFO | Episode 12 | Total train time: 0.83 s
+2025-12-28 00:57:52,742 | INFO | Episode 12 | Eval time: 7.62 s
+2025-12-28 00:57:52,816 | INFO | Episode 12 END | Total time: 8.52 s | Train: 0.83 s | Eval: 7.62 s
+2025-12-28 00:57:52,816 | INFO | ============================================================
+2025-12-28 00:57:52,816 | INFO | Episode 13 START
+2025-12-28 00:57:53,070 | INFO | Episode 13 | Train topo 0 time: 0.25 s
+2025-12-28 00:57:53,298 | INFO | Episode 13 | Train topo 1 time: 0.23 s
+2025-12-28 00:57:53,526 | INFO | Episode 13 | Train topo 2 time: 0.23 s
+2025-12-28 00:57:53,526 | INFO | Episode 13 | Total train time: 0.71 s
+2025-12-28 00:58:00,469 | INFO | Episode 13 | Eval time: 6.94 s
+2025-12-28 00:58:00,543 | INFO | Episode 13 END | Total time: 7.73 s | Train: 0.71 s | Eval: 6.94 s
+2025-12-28 00:58:00,543 | INFO | ============================================================
+2025-12-28 00:58:00,543 | INFO | Episode 14 START
+2025-12-28 00:58:00,787 | INFO | Episode 14 | Train topo 0 time: 0.24 s
+2025-12-28 00:58:01,007 | INFO | Episode 14 | Train topo 1 time: 0.22 s
+2025-12-28 00:58:01,230 | INFO | Episode 14 | Train topo 2 time: 0.22 s
+2025-12-28 00:58:01,230 | INFO | Episode 14 | Total train time: 0.69 s
+2025-12-28 00:58:07,930 | INFO | Episode 14 | Eval time: 6.70 s
+2025-12-28 00:58:08,005 | INFO | Episode 14 END | Total time: 7.46 s | Train: 0.69 s | Eval: 6.70 s
+2025-12-28 00:58:08,005 | INFO | ============================================================
+2025-12-28 00:58:08,005 | INFO | Episode 15 START
+2025-12-28 00:58:08,250 | INFO | Episode 15 | Train topo 0 time: 0.24 s
+2025-12-28 00:58:08,468 | INFO | Episode 15 | Train topo 1 time: 0.22 s
+2025-12-28 00:58:08,690 | INFO | Episode 15 | Train topo 2 time: 0.22 s
+2025-12-28 00:58:08,690 | INFO | Episode 15 | Total train time: 0.68 s
+2025-12-28 00:58:15,384 | INFO | Episode 15 | Eval time: 6.69 s
+2025-12-28 00:58:15,460 | INFO | Episode 15 END | Total time: 7.45 s | Train: 0.68 s | Eval: 6.69 s
+2025-12-28 00:58:15,460 | INFO | ============================================================
+2025-12-28 00:58:15,460 | INFO | Episode 16 START
+2025-12-28 00:58:15,704 | INFO | Episode 16 | Train topo 0 time: 0.24 s
+2025-12-28 00:58:15,924 | INFO | Episode 16 | Train topo 1 time: 0.22 s
+2025-12-28 00:58:16,148 | INFO | Episode 16 | Train topo 2 time: 0.22 s
+2025-12-28 00:58:16,149 | INFO | Episode 16 | Total train time: 0.69 s
+2025-12-28 00:58:22,856 | INFO | Episode 16 | Eval time: 6.71 s
+2025-12-28 00:58:22,931 | INFO | Episode 16 END | Total time: 7.47 s | Train: 0.69 s | Eval: 6.71 s
+2025-12-28 00:58:22,931 | INFO | ============================================================
+2025-12-28 00:58:22,931 | INFO | Episode 17 START
+2025-12-28 00:58:23,173 | INFO | Episode 17 | Train topo 0 time: 0.24 s
+2025-12-28 00:58:23,393 | INFO | Episode 17 | Train topo 1 time: 0.22 s
+2025-12-28 00:58:23,618 | INFO | Episode 17 | Train topo 2 time: 0.22 s
+2025-12-28 00:58:23,618 | INFO | Episode 17 | Total train time: 0.69 s
+2025-12-28 00:58:30,325 | INFO | Episode 17 | Eval time: 6.71 s
+2025-12-28 00:58:30,401 | INFO | Episode 17 END | Total time: 7.47 s | Train: 0.69 s | Eval: 6.71 s
+2025-12-28 00:58:30,401 | INFO | ============================================================
+2025-12-28 00:58:30,401 | INFO | Episode 18 START
+2025-12-28 00:58:30,644 | INFO | Episode 18 | Train topo 0 time: 0.24 s
+2025-12-28 00:58:30,863 | INFO | Episode 18 | Train topo 1 time: 0.22 s
+2025-12-28 00:58:31,085 | INFO | Episode 18 | Train topo 2 time: 0.22 s
+2025-12-28 00:58:31,085 | INFO | Episode 18 | Total train time: 0.68 s
+2025-12-28 00:58:37,796 | INFO | Episode 18 | Eval time: 6.71 s
+2025-12-28 00:58:37,873 | INFO | Episode 18 END | Total time: 7.47 s | Train: 0.68 s | Eval: 6.71 s
+2025-12-28 00:58:37,873 | INFO | ============================================================
+2025-12-28 00:58:37,873 | INFO | Episode 19 START
+2025-12-28 00:58:38,119 | INFO | Episode 19 | Train topo 0 time: 0.25 s
+2025-12-28 00:58:38,340 | INFO | Episode 19 | Train topo 1 time: 0.22 s
+2025-12-28 00:58:38,563 | INFO | Episode 19 | Train topo 2 time: 0.22 s
+2025-12-28 00:58:38,563 | INFO | Episode 19 | Total train time: 0.69 s
+2025-12-28 00:58:45,259 | INFO | Episode 19 | Eval time: 6.70 s
+2025-12-28 00:58:45,337 | INFO | Episode 19 END | Total time: 7.46 s | Train: 0.69 s | Eval: 6.70 s
+2025-12-28 00:58:45,337 | INFO | ============================================================
+2025-12-28 00:58:45,337 | INFO | Episode 20 START
+2025-12-28 00:58:45,581 | INFO | Episode 20 | Train topo 0 time: 0.24 s
+2025-12-28 00:58:45,800 | INFO | Episode 20 | Train topo 1 time: 0.22 s
+2025-12-28 00:58:46,025 | INFO | Episode 20 | Train topo 2 time: 0.23 s
+2025-12-28 00:58:46,026 | INFO | Episode 20 | Total train time: 0.69 s
+2025-12-28 00:58:53,008 | INFO | Episode 20 | Eval time: 6.98 s
+2025-12-28 00:58:53,088 | INFO | Episode 20 END | Total time: 7.75 s | Train: 0.69 s | Eval: 6.98 s
+2025-12-28 00:58:53,088 | INFO | ============================================================
+2025-12-28 00:58:53,088 | INFO | Episode 21 START
+2025-12-28 00:58:53,334 | INFO | Episode 21 | Train topo 0 time: 0.25 s
+2025-12-28 00:58:53,557 | INFO | Episode 21 | Train topo 1 time: 0.22 s
+2025-12-28 00:58:53,780 | INFO | Episode 21 | Train topo 2 time: 0.22 s
+2025-12-28 00:58:53,780 | INFO | Episode 21 | Total train time: 0.69 s
+2025-12-28 00:59:01,016 | INFO | Episode 21 | Eval time: 7.24 s
+2025-12-28 00:59:01,096 | INFO | Episode 21 END | Total time: 8.01 s | Train: 0.69 s | Eval: 7.24 s
+2025-12-28 00:59:01,096 | INFO | ============================================================
+2025-12-28 00:59:01,096 | INFO | Episode 22 START
+2025-12-28 00:59:01,344 | INFO | Episode 22 | Train topo 0 time: 0.25 s
+2025-12-28 00:59:01,567 | INFO | Episode 22 | Train topo 1 time: 0.22 s
+2025-12-28 00:59:01,794 | INFO | Episode 22 | Train topo 2 time: 0.23 s
+2025-12-28 00:59:01,795 | INFO | Episode 22 | Total train time: 0.70 s
+2025-12-28 00:59:08,566 | INFO | Episode 22 | Eval time: 6.77 s
+2025-12-28 00:59:08,646 | INFO | Episode 22 END | Total time: 7.55 s | Train: 0.70 s | Eval: 6.77 s
+2025-12-28 00:59:08,647 | INFO | ============================================================
+2025-12-28 00:59:08,647 | INFO | Episode 23 START
+2025-12-28 00:59:08,897 | INFO | Episode 23 | Train topo 0 time: 0.25 s
+2025-12-28 00:59:09,122 | INFO | Episode 23 | Train topo 1 time: 0.22 s
+2025-12-28 00:59:09,350 | INFO | Episode 23 | Train topo 2 time: 0.23 s
+2025-12-28 00:59:09,351 | INFO | Episode 23 | Total train time: 0.70 s
+2025-12-28 00:59:16,216 | INFO | Episode 23 | Eval time: 6.87 s
+2025-12-28 00:59:16,298 | INFO | Episode 23 END | Total time: 7.65 s | Train: 0.70 s | Eval: 6.87 s
+2025-12-28 00:59:16,298 | INFO | ============================================================
+2025-12-28 00:59:16,298 | INFO | Episode 24 START
+2025-12-28 00:59:16,546 | INFO | Episode 24 | Train topo 0 time: 0.25 s
+2025-12-28 00:59:16,777 | INFO | Episode 24 | Train topo 1 time: 0.23 s
+2025-12-28 00:59:17,003 | INFO | Episode 24 | Train topo 2 time: 0.23 s
+2025-12-28 00:59:17,003 | INFO | Episode 24 | Total train time: 0.70 s
+2025-12-28 00:59:23,885 | INFO | Episode 24 | Eval time: 6.88 s
+2025-12-28 00:59:23,966 | INFO | Episode 24 END | Total time: 7.67 s | Train: 0.70 s | Eval: 6.88 s
+2025-12-28 00:59:23,966 | INFO | ============================================================
+2025-12-28 00:59:23,967 | INFO | Episode 25 START
+2025-12-28 00:59:24,214 | INFO | Episode 25 | Train topo 0 time: 0.25 s
+2025-12-28 00:59:24,440 | INFO | Episode 25 | Train topo 1 time: 0.23 s
+2025-12-28 00:59:24,667 | INFO | Episode 25 | Train topo 2 time: 0.23 s
+2025-12-28 00:59:24,668 | INFO | Episode 25 | Total train time: 0.70 s
+2025-12-28 00:59:31,562 | INFO | Episode 25 | Eval time: 6.89 s
+2025-12-28 00:59:31,646 | INFO | Episode 25 END | Total time: 7.68 s | Train: 0.70 s | Eval: 6.89 s
+2025-12-28 00:59:31,646 | INFO | ============================================================
+2025-12-28 00:59:31,647 | INFO | Episode 26 START
+2025-12-28 00:59:31,891 | INFO | Episode 26 | Train topo 0 time: 0.24 s
+2025-12-28 00:59:32,109 | INFO | Episode 26 | Train topo 1 time: 0.22 s
+2025-12-28 00:59:32,334 | INFO | Episode 26 | Train topo 2 time: 0.22 s
+2025-12-28 00:59:32,335 | INFO | Episode 26 | Total train time: 0.69 s
+2025-12-28 00:59:39,197 | INFO | Episode 26 | Eval time: 6.86 s
+2025-12-28 00:59:39,281 | INFO | Episode 26 END | Total time: 7.63 s | Train: 0.69 s | Eval: 6.86 s
+2025-12-28 00:59:39,281 | INFO | ============================================================
+2025-12-28 00:59:39,281 | INFO | Episode 27 START
+2025-12-28 00:59:39,530 | INFO | Episode 27 | Train topo 0 time: 0.25 s
+2025-12-28 00:59:39,750 | INFO | Episode 27 | Train topo 1 time: 0.22 s
+2025-12-28 00:59:39,978 | INFO | Episode 27 | Train topo 2 time: 0.23 s
+2025-12-28 00:59:39,978 | INFO | Episode 27 | Total train time: 0.70 s
+2025-12-28 00:59:46,885 | INFO | Episode 27 | Eval time: 6.91 s
+2025-12-28 00:59:46,968 | INFO | Episode 27 END | Total time: 7.69 s | Train: 0.70 s | Eval: 6.91 s
+2025-12-28 00:59:46,969 | INFO | ============================================================
+2025-12-28 00:59:46,969 | INFO | Episode 28 START
+2025-12-28 00:59:47,220 | INFO | Episode 28 | Train topo 0 time: 0.25 s
+2025-12-28 00:59:47,443 | INFO | Episode 28 | Train topo 1 time: 0.22 s
+2025-12-28 00:59:47,672 | INFO | Episode 28 | Train topo 2 time: 0.23 s
+2025-12-28 00:59:47,672 | INFO | Episode 28 | Total train time: 0.70 s
+2025-12-28 00:59:54,580 | INFO | Episode 28 | Eval time: 6.91 s
+2025-12-28 00:59:54,666 | INFO | Episode 28 END | Total time: 7.70 s | Train: 0.70 s | Eval: 6.91 s
+2025-12-28 00:59:54,667 | INFO | ============================================================
+2025-12-28 00:59:54,667 | INFO | Episode 29 START
+2025-12-28 00:59:54,921 | INFO | Episode 29 | Train topo 0 time: 0.25 s
+2025-12-28 00:59:55,146 | INFO | Episode 29 | Train topo 1 time: 0.22 s
+2025-12-28 00:59:55,375 | INFO | Episode 29 | Train topo 2 time: 0.23 s
+2025-12-28 00:59:55,375 | INFO | Episode 29 | Total train time: 0.71 s
+2025-12-28 01:00:02,289 | INFO | Episode 29 | Eval time: 6.91 s
+2025-12-28 01:00:02,376 | INFO | Episode 29 END | Total time: 7.71 s | Train: 0.71 s | Eval: 6.91 s
+2025-12-28 01:00:02,376 | INFO | ============================================================
+2025-12-28 01:00:02,376 | INFO | Episode 30 START
+2025-12-28 01:00:02,630 | INFO | Episode 30 | Train topo 0 time: 0.25 s
+2025-12-28 01:00:02,856 | INFO | Episode 30 | Train topo 1 time: 0.23 s
+2025-12-28 01:00:03,085 | INFO | Episode 30 | Train topo 2 time: 0.23 s
+2025-12-28 01:00:03,085 | INFO | Episode 30 | Total train time: 0.71 s
+2025-12-28 01:00:09,999 | INFO | Episode 30 | Eval time: 6.91 s
+2025-12-28 01:00:10,085 | INFO | Episode 30 END | Total time: 7.71 s | Train: 0.71 s | Eval: 6.91 s
+2025-12-28 01:00:10,085 | INFO | ============================================================
+2025-12-28 01:00:10,085 | INFO | Episode 31 START
+2025-12-28 01:00:10,339 | INFO | Episode 31 | Train topo 0 time: 0.25 s
+2025-12-28 01:00:10,563 | INFO | Episode 31 | Train topo 1 time: 0.22 s
+2025-12-28 01:00:10,793 | INFO | Episode 31 | Train topo 2 time: 0.23 s
+2025-12-28 01:00:10,793 | INFO | Episode 31 | Total train time: 0.71 s
+2025-12-28 01:00:17,687 | INFO | Episode 31 | Eval time: 6.89 s
+2025-12-28 01:00:17,779 | INFO | Episode 31 END | Total time: 7.69 s | Train: 0.71 s | Eval: 6.89 s
+2025-12-28 01:00:17,779 | INFO | ============================================================
+2025-12-28 01:00:17,779 | INFO | Episode 32 START
+2025-12-28 01:00:18,036 | INFO | Episode 32 | Train topo 0 time: 0.26 s
+2025-12-28 01:00:18,260 | INFO | Episode 32 | Train topo 1 time: 0.22 s
+2025-12-28 01:00:18,489 | INFO | Episode 32 | Train topo 2 time: 0.23 s
+2025-12-28 01:00:18,490 | INFO | Episode 32 | Total train time: 0.71 s
+2025-12-28 01:00:25,394 | INFO | Episode 32 | Eval time: 6.90 s
+2025-12-28 01:00:25,482 | INFO | Episode 32 END | Total time: 7.70 s | Train: 0.71 s | Eval: 6.90 s
+2025-12-28 01:00:25,482 | INFO | ============================================================
+2025-12-28 01:00:25,482 | INFO | Episode 33 START
+2025-12-28 01:00:25,736 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:00:28,023 | INFO | Episode 33 | Train topo 0 time: 2.54 s
+2025-12-28 01:00:28,059 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:00:30,187 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:00:32,326 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:00:34,469 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:00:36,629 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:00:38,756 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:00:40,875 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:00:42,988 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:00:45,117 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:00:47,260 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:00:49,390 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:00:51,509 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:00:53,593 | INFO | Episode 33 | Train topo 1 time: 25.56 s
+2025-12-28 01:00:53,605 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:00:55,736 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:00:57,867 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:00:59,992 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:02,111 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:04,235 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:06,401 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:08,535 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:10,760 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:12,892 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:15,023 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:17,208 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:19,327 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:21,418 | INFO | Episode 33 | Train topo 2 time: 27.82 s
+2025-12-28 01:01:21,424 | INFO | Episode 33 | Total train time: 55.94 s
+2025-12-28 01:01:28,423 | INFO | Episode 33 | Eval time: 6.99 s
+2025-12-28 01:01:28,512 | INFO | Episode 33 END | Total time: 63.03 s | Train: 55.94 s | Eval: 6.99 s
+2025-12-28 01:01:28,512 | INFO | ============================================================
+2025-12-28 01:01:28,513 | INFO | Episode 34 START
+2025-12-28 01:01:28,538 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:30,756 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:33,289 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:35,819 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:38,348 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:40,880 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:43,424 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:45,962 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:48,491 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:51,019 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:53,551 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:56,125 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:01:58,656 | INFO | Episode 34 | Train topo 0 time: 30.14 s
+2025-12-28 01:01:58,673 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:01,339 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:03,864 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:06,416 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:08,947 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:11,482 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:14,047 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:16,479 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:18,718 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:20,829 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:22,973 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:25,110 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:27,254 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:29,369 | INFO | Episode 34 | Train topo 1 time: 30.71 s
+2025-12-28 01:02:29,404 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:31,640 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:33,752 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:36,084 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:38,406 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:40,734 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:42,983 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:45,166 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:47,307 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:49,423 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:51,575 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:53,714 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:02:55,887 | INFO | Episode 34 | Train topo 2 time: 26.51 s
+2025-12-28 01:02:55,887 | INFO | Episode 34 | Total train time: 87.37 s
+2025-12-28 01:03:03,439 | INFO | Episode 34 | Eval time: 7.55 s
+2025-12-28 01:03:03,532 | INFO | Episode 34 END | Total time: 95.02 s | Train: 87.37 s | Eval: 7.55 s
+2025-12-28 01:03:03,532 | INFO | ============================================================
+2025-12-28 01:03:03,533 | INFO | Episode 35 START
+2025-12-28 01:03:03,550 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:05,727 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:07,862 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:09,997 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:12,063 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:14,143 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:16,346 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:18,410 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:20,708 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:22,977 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:25,516 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:27,706 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:30,076 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:32,383 | INFO | Episode 35 | Train topo 0 time: 28.85 s
+2025-12-28 01:03:32,422 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:34,878 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:37,102 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:39,375 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:41,641 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:43,915 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:46,197 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:48,441 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:50,709 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:52,935 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:55,226 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:57,593 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:03:59,874 | INFO | Episode 35 | Train topo 1 time: 27.49 s
+2025-12-28 01:03:59,890 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:04:02,255 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:04:04,515 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:04:06,780 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:04:09,006 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:04:11,269 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:04:13,665 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:04:16,258 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:04:18,791 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:04:21,107 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:04:23,510 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:04:25,824 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:04:28,190 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:04:30,572 | INFO | Episode 35 | Train topo 2 time: 30.70 s
+2025-12-28 01:04:30,579 | INFO | Episode 35 | Total train time: 87.05 s
+2025-12-28 01:04:38,019 | INFO | Episode 35 | Eval time: 7.44 s
+2025-12-28 01:04:38,112 | INFO | Episode 35 END | Total time: 94.58 s | Train: 87.05 s | Eval: 7.44 s
+2025-12-28 01:04:38,113 | INFO | ============================================================
+2025-12-28 01:04:38,113 | INFO | Episode 36 START
+2025-12-28 01:04:38,142 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:04:40,512 | INFO | exceed buffer_threshold, start training
+2025-12-28 01:04:43,078 | INFO | exceed buffer_threshold, start training

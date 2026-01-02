@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "LS2IC_prepare_dataset_32node144tm",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            // "args": "${command:pickArgs}"
+            "args": [
+                "--topology", "32node",
+                "--tms", "144tm"
+            ],
+        },
+        {
+            "name": "LS2IC_prepare_dataset_32node24tm",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            // "args": "${command:pickArgs}"
+            "args": [
+                "--topology", "32node",
+                "--tms", "24tm"
+            ],
+        },
+        {
+            "name": "LS2IC_prepare_dataset_geant24tm",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            // "args": "${command:pickArgs}"
+            "args": [
+                "--topology", "geamt",
+                "--tms", "144tm"
+            ],
+        }
+
+    ]
+}

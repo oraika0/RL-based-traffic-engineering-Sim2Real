@@ -1,0 +1,19 @@
+
+iperf3 -s -p 2017  -1 &
+sleep 0.3
+iperf3 -s -p 8017  -1 &
+sleep 0.3
+iperf3 -s -p 14017  -1 &
+sleep 0.3
+iperf3 -s -p 18017  -1 &
+sleep 0.3
+iperf3 -s -p 19017  -1 &
+sleep 0.3
+iperf3 -s -p 21017  -1 &
+sleep 0.3
+iperf3 -s -p 23017  -1 &
+sleep 0.3
+iperf3 -s -p 24017  -1 &
+sleep 0.3
+iperf3 -s -p 25017  -1 &
+sleep 0.3

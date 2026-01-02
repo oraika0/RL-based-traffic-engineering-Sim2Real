@@ -1,0 +1,20 @@
+2025-12-31 01:28:05,723 | INFO | 開始訓練
+2025-12-31 01:28:05,724 | INFO | ============================================================
+2025-12-31 01:28:05,724 | INFO | Episode 0 START
+2025-12-31 01:28:06,197 | INFO | Episode 0 | Train topo 0 time: 0.47 s
+2025-12-31 01:28:06,197 | INFO | Episode 0 | Total train time: 0.47 s
+2025-12-31 01:28:10,553 | INFO | Episode 0 | Eval time: 4.35 s
+2025-12-31 01:28:19,394 | INFO | Episode 0 | Eval time old : 8.84 s
+2025-12-31 01:28:19,474 | INFO | Episode 0 END | Total time: 13.75 s | Train: 0.47 s | Eval: 4.35 s
+2025-12-31 01:28:19,474 | INFO | ============================================================
+2025-12-31 01:28:19,474 | INFO | Episode 1 START
+2025-12-31 01:28:19,812 | INFO | Episode 1 | Train topo 0 time: 0.34 s
+2025-12-31 01:28:19,812 | INFO | Episode 1 | Total train time: 0.34 s
+2025-12-31 01:28:24,134 | INFO | Episode 1 | Eval time: 4.32 s
+2025-12-31 01:28:32,998 | INFO | Episode 1 | Eval time old : 8.86 s
+2025-12-31 01:28:33,080 | INFO | Episode 1 END | Total time: 13.60 s | Train: 0.34 s | Eval: 4.32 s
+2025-12-31 01:28:33,080 | INFO | ============================================================
+2025-12-31 01:28:33,080 | INFO | Episode 2 START
+2025-12-31 01:28:33,420 | INFO | Episode 2 | Train topo 0 time: 0.34 s
+2025-12-31 01:28:33,420 | INFO | Episode 2 | Total train time: 0.34 s
+2025-12-31 01:28:37,765 | INFO | Episode 2 | Eval time: 4.34 s

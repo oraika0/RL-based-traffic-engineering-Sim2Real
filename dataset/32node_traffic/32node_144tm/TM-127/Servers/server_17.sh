@@ -1,0 +1,15 @@
+
+iperf3 -s -p 11017  -1 &
+sleep 0.3
+iperf3 -s -p 12017  -1 &
+sleep 0.3
+iperf3 -s -p 18017  -1 &
+sleep 0.3
+iperf3 -s -p 23017  -1 &
+sleep 0.3
+iperf3 -s -p 25017  -1 &
+sleep 0.3
+iperf3 -s -p 26017  -1 &
+sleep 0.3
+iperf3 -s -p 27017  -1 &
+sleep 0.3
