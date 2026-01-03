@@ -25,9 +25,19 @@ from .ps_dqn_a import MA_PS_DQN_A
 from .ps_dqn import MA_PS_DQN
 
 # === PyTorch 2.6+ safe globals 註冊 ===
-torch.serialization.add_safe_globals([
-    ls2ic,
+# torch.serialization.add_safe_globals([
+#     ls2ic,
+#     MF_dqn,
+#     MA_PS_DQN_A,
+#     MA_PS_DQN
+# ])
+
+
+if hasattr(torch.serialization, "add_safe_globals"):
+    torch.serialization.add_safe_globals([
+        # your classes here
+            ls2ic,
     MF_dqn,
     MA_PS_DQN_A,
     MA_PS_DQN
-])
+    ])
