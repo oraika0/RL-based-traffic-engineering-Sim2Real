@@ -1,9 +1,10 @@
 import os
 home = os.path.expanduser("~")
+cwd = os.path.getcwd()
 config = {
     "conda_sh": home+"/miniconda3/etc/profile.d/conda.sh",
     "conda_env": "sdn1",
-    "controller_dir": home+"/refactor/utils",
+    "controller_dir": cwd+"/refactor/utils",
     "controller_entry": "simple_monitor.py"
 }
 # config = {
