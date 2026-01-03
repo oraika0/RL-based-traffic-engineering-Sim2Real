@@ -1,6 +1,6 @@
 import os
 home = os.path.expanduser("~")
-cwd = os.path.getcwd()
+cwd = os.getcwd()
 config = {
     "conda_sh": home+"/miniconda3/etc/profile.d/conda.sh",
     "conda_env": "sdn1",
