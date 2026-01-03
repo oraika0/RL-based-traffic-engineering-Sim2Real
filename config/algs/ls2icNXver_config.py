@@ -22,5 +22,6 @@ config = {
     "epsilon_first_phase": 1500,
     "epsilon_second_phase": 0,
     "use_delta_reward": False,
-    "use_delay_only":True
+    "use_delay_only":True,
+    "reward_mode":"bwd_only"
 }

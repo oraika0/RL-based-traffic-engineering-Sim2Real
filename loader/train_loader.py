@@ -718,7 +718,7 @@ def path_metrics_to_reward(config):
             rewards_actions = []   
             rewards_actions_indicator = []           
             for act in range(20):
-                rewards_actions.append(reward(i,j,paths_metrics_dict,act,metrics))
+                rewards_actions.append(reward(i,j,paths_metrics_dict,act,metrics,config))
                 rewards_actions_indicator.append(rewards_indicator_fun(i,j,paths_metrics_dict,act,metrics))
                 rewards_dic[i][j] = rewards_actions
                 rewards_indicator[i][j] = rewards_actions_indicator
@@ -832,10 +832,17 @@ def get_state(config, masks, link_indices): # get the current network state
     global_state_2d = global_state_2d.flatten()
     return local_state, mlu, global_state_2d
 
-def reward(src, dst, paths_metrics_dict, act, metrics):
+def reward(src, dst, paths_metrics_dict, act, metrics,config):
     beta1=1
     beta2=1
     beta3=1
+    if ((config.get("reward_mode", "all"))=="bwd_only"):
+        print("use bwd for reward only")
+        beta1=1
+        beta2=0
+        beta3=0
+    
+
     reward = beta1*paths_metrics_dict[str(src)][str(dst)][metrics[0]][1][act] + beta2*paths_metrics_dict[str(src)][str(dst)][metrics[1]][1][act] + beta3*paths_metrics_dict[str(src)][str(dst)][metrics[2]][1][act]
     return round(reward,15)
 
