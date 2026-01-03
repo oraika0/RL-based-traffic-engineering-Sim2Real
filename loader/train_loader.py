@@ -112,7 +112,7 @@ def training(config):
             input_state = state
         #print(input_state)
         info = build_info(agents, input_state, epsilon, config, drl_paths)
-        action, output_info = agents.get_action([input_state], epsilon, **info)
+        action, output_info = agents.get_action(input_state, epsilon, **info)
 
         (reward_all, reward_bwd, reward_delay, reward_loss, agent_reward_list) = loop_pairs(
             config, size, action, step,
@@ -259,9 +259,16 @@ def testing_sacd_nx(config):
     SACD_Agent = SACD(hyper_parameter)
     SACD_Agent.K_path = K
     SACD_Agent.target_entropy = 0.5 * (-np.log(1 / K))
-    model_dir = os.path.join("A-Traffic-Engineering-Method-Using-RouteNet-Based-Actor-Critic-Learning-in-SDN-Routing-main", "SAC_PL_KP", "models", "Enero_3top_15_B_SAC2025-12-31_01-31-35trained_with_Geant")
-    # model_id = 'final'
-    SACD_Agent.actor.load_state_dict(torch.load(model_dir + f"/actor_8.pt"))
+    model_dir = os.path.join("A-Traffic-Engineering-Method-Using-RouteNet-Based-Actor-Critic-Learning-in-SDN-Routing-main",
+                              "SAC_PL_KP", "models")
+    
+    
+    # 切換model的位置
+    # model_dir = os.path.join(model_dir, "Enero_3top_15_B_SAC2025-12-31_01-31-35trained_with_Geant")
+    model_dir = os.path.join(model_dir, "modelsEnero_3top_15_B_SAC66")
+    model_file_name = "actor_final.pt"
+
+    SACD_Agent.actor.load_state_dict(torch.load(os.path.join(model_dir, model_file_name)))
     SACD_Agent.actor.eval()
 
     print("load model success....")
@@ -283,6 +290,7 @@ def testing_sacd_nx(config):
             action = torch.argmax(action_dist).item()
 
         # 記錄這個 flow 的決策
+        # 0-based
         routing_plan[(source, destination)] = action
 
         # SACD env step（只在 graph env 裡）
@@ -292,6 +300,7 @@ def testing_sacd_nx(config):
             break
         
     # ---------- 5. 轉成 Mininet 要的 drl_paths ----------
+    # 1-based
     drl_paths = convert_sacd_plan_to_drl_paths(routing_plan, env_eval)
 
 
@@ -300,7 +309,6 @@ def testing_sacd_nx(config):
     test_step = config.get("test_step", 30)
     
     drl_paths_path = f"./results/{config['algs_name']}/drl_paths.json"
-    print("SACD routing plan dumped.")
 
     while True:
         time_in = time.time()
@@ -308,8 +316,8 @@ def testing_sacd_nx(config):
         with open(drl_paths_path, "w") as f:
             json.dump(drl_paths, f, indent=2)
 
-        print("Dumped DRL paths")
-
+        print("SACD routing plan dumped.")
+    
         # 等 controller 套 routing（跟 MA 行為一致）
         time.sleep(config.get("routing_apply_wait", 5))
 
@@ -359,7 +367,9 @@ def testing_ma(config):
         model_path = f'./results/{config["algs_name"]}/model'
         agents.load_model(model_path)
     except Exception as e:
+        print(model_path)
         print("No model, have to train model first")
+        print(e)
         return
                 
     print("load model success....")
@@ -392,8 +402,8 @@ def testing_ma(config):
             input_state = state
             
         info = build_info(agents, input_state, 0.0, config, drl_paths={})
-        action, _ = agents.get_action([input_state], 0.0, **info)
-        
+        action, _ = agents.get_action(input_state, 0.0, **info)
+            
         for i in range(1, size):
             drl_paths.setdefault(str(i), {})
             for j in range(1, size):
@@ -466,13 +476,15 @@ def testing_anime(config):
         drl_paths = {}
         agent_index = 0
 
-        if config.get("use_global_state", False):
+        if config.get("use_global_state", True):
             input_state = global_state
         else:
             input_state = state
 
         info = build_info(agents, input_state, 0.0, config, drl_paths={})
-        action, _ = agents.get_action([input_state], 0.0, **info)
+        print(input_state.shape)
+        print(input_state)
+        action, _ = agents.get_action(input_state, 0.0, **info)
         
         for i in range(1, size):
             drl_paths.setdefault(str(i), {})
@@ -526,25 +538,27 @@ def convert_sacd_plan_to_drl_paths(routing_plan, env):
     num_node = env.numNodes
     drl_paths = {}
 
-    for i in range(1, num_node + 1):
-        drl_paths[str(i)] = {}
-        for j in range(1, num_node + 1):
+    for i in range(num_node):
+        drl_paths[str(i+1)] = {}
+        for j in range(num_node):
             if i == j:
                 continue
 
-            key = (i-1, j-1)
+            key = (i, j)
 
             # SACD 有決策的 pair
             if key in routing_plan:
                 action = routing_plan[key]
-                path = env.allPaths[f"{i-1}:{j-1}"][action]
+                path = env.allPaths[f"{i}:{j}"][action]
 
             # SACD 沒碰到的 pair → shortest paths
             else:
-                path = env.shortest_paths[i-1][j-1]
+                path = env.shortest_paths[i][j]
+            
+            # 0-based to 1-based
+            path_1based = [node + 1 for node in path]
 
-            drl_paths[str(i)][str(j)] = [path]
-
+            drl_paths[str(i+1)][str(j+1)] = [path_1based]
     return drl_paths
 
 
@@ -804,13 +818,17 @@ def get_state(config, masks, link_indices): # get the current network state
             cur_pkloss = row['pkloss']
 
             mlu = max(mlu, (bwd[index] - cur_bwd) / bwd[index])
-
+            
             global_state_2d[index, 0] = cur_bwd / bwd[index]  # normalized throughput
             global_state_2d[index, 1] = cur_delay / config.get("delay_norm_div", 200.0)  # configurable
             global_state_2d[index, 2] = cur_pkloss
-
+    if config.get("use_delay_only", False):
+        global_state_2d = global_state_2d[:, 0:1]   # (num_links, 1)
+    
     global_state_2d_expanded = np.expand_dims(global_state_2d, axis=0)  # (1, num_links, 3)
-    local_state = masks * global_state_2d_expanded
+    local_state = masks[:, :, :global_state_2d.shape[1]] * global_state_2d_expanded # 如果只用 delay mask 也跟著縮惟度
+
+    # local_state = masks * global_state_2d_expanded
     global_state_2d = global_state_2d.flatten()
     return local_state, mlu, global_state_2d
 
@@ -907,7 +925,7 @@ def compute_network_metrics_nx(env_eval, drl_paths, config):
     NetworkX-based metric computation aligned with Mininet definition.
     drl_paths: full routing table (including shortest-path fallback)
     """
-
+    # drl_paths 是 1-based
     # ---------- 1. 讀取 link capacity（單向 cap） ----------
     capacity_dict = {}
     try:
@@ -916,7 +934,7 @@ def compute_network_metrics_nx(env_eval, drl_paths, config):
                 data = line.strip().split(',')
                 if len(data) < 4:
                     continue
-                src, dst, _, bw = int(data[0])-1, int(data[1])-1, float(data[3])
+                src, dst, _, bw = int(data[0])-1, int(data[1])-1, data[2], float(data[3])
                 capacity_dict[frozenset((src, dst))] = bw
     except Exception:
         pass
@@ -937,24 +955,27 @@ def compute_network_metrics_nx(env_eval, drl_paths, config):
             if src == dst:
                 continue
 
-            path = drl_paths[src][dst][0]
+            path_1based = drl_paths[src][dst][0]
+            path_0based = [node - 1 for node in path_1based]
+
             demand_bw = env_eval.TM[int(src)-1][int(dst)-1]
 
-            for i in range(len(path) - 1):
-                u, v = path[i], path[i+1]
+            for i in range(len(path_0based) - 1):
+                u, v = path_0based[i], path_0based[i+1]
                 key = frozenset((u, v))
                 link_load[key] += demand_bw
+
 
     # ---------- 4. 對齊 Mininet 的 throughput / utilization ----------
     throughputs = []
     utilizations = []
 
     for key, used_bw in link_load.items():
-        cap = capacity_dict.get(key, DEFAULT_CAP)
+        cap = capacity_dict.get(key, DEFAULT_CAP) # 1-based 
 
         total_cap = 2 * cap  # 雙向總容量
-        throughput = used_bw
-        utilization = used_bw / total_cap
+        throughput = used_bw / 1000
+        utilization = throughput / total_cap
 
         throughputs.append(throughput)
         utilizations.append(utilization)

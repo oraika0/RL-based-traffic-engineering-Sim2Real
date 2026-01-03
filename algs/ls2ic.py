@@ -317,6 +317,11 @@ class ls2ic_agent():
     def get_action(self, state, epsilon, **info):
         state_tensor = torch.tensor(state, dtype=torch.float32).detach().to(self.device)
         
+        if state_tensor.dim() == 3:
+            state_tensor = state_tensor.unsqueeze(0)
+        # (1, num_agents, num_links, num_link_fea)
+        # batch
+        
         with torch.no_grad():
             q_value, self.hidden_states, _ = self.actor(state_tensor, self.hidden_states)
         
@@ -376,7 +381,7 @@ class ls2ic_agent():
         torch.save(self.aux_model, path+'/aux_model')
         
     def load_model(self, path):
-        self.actor = torch.load(path+'/ls2ic_model', map_location=self.device)
+        self.actor = torch.load(path+'/ls2ic_model', map_location=self.device, weights_only=False)
         
     def update(self):
         sample_result = self.sample_window(self.time_seq)

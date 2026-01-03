@@ -4,6 +4,7 @@ config = {
     "tm_prefix": "dataset/32node_traffic/32node_24tm/TM-{tm_id}/",
     "num_link": 60,
     "num_link_fea": 3,
+    "num_link_fea_NXver": 1,
     "num_agents": 992,
     "num_node": 32,
     "num_tm": 24,

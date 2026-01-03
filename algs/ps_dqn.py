@@ -86,7 +86,7 @@ class ps_dqn_agent:
         torch.save(self.dqn_model, path+'/ps_dqn_model')
 
     def load_model(self, path):
-        self.dqn_model = torch.load(path+'/ps_dqn_model', map_location=self.device)
+        self.dqn_model = torch.load(path+'/ps_dqn_model', map_location=self.device, weights_only=False)
 
     def update(self):
         mini_batch = random.sample(self.memory, self.batch_size)

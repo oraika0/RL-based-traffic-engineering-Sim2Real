@@ -106,7 +106,7 @@ class meanfield_agent:
         torch.save(self.MF_dqn, path+'/meanfield_model')
 
     def load_model(self, path):
-        self.MF_dqn = torch.load(path+'/meanfield_model', map_location=self.device)
+        self.MF_dqn = torch.load(path+'/meanfield_model', map_location=self.device, weights_only=False)
 
     def update(self):
         mini_batch = random.sample(self.memory, self.batch_size)

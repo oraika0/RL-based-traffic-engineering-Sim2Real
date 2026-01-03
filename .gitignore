@@ -1,4 +1,7 @@
 __pycache__/
 *.pyc
 wandb/
+results/sacd_nx/Metrics/
 *.zip
+results/ls2icNXver/Metrics/
+results/ls2ic/Metrics/

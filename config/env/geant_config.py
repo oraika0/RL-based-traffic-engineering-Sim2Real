@@ -4,6 +4,7 @@ config = {
     "tm_prefix": "dataset/geant_traffic/23node/TM-{tm_id}/",
     "num_link": 37,
     "num_link_fea": 3,
+    "num_link_fea_NXver": 1,
     "num_agents": 506,
     "num_node": 23,
     "num_tm": 24,

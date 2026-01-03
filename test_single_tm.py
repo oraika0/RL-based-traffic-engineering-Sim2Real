@@ -89,25 +89,33 @@ def main():
     print("Controller spawned, wait 30 s ...")
     time.sleep(30)
 
-    while(1):
-        input_ = input("Enter the traffic matrix ID to be tested (e.g., 06) or type QUIT to exit: ").strip()
-    
-        if input_.upper() == 'QUIT':
-            break
-        
-        if not input_:
-            print("Input cannot be empty. Please enter a valid ID or QUIT.")
-            continue
 
-        try:
-            tm_id = int(input_)
-            if tm_id < 0:
-                print("Traffic matrix ID must be non-negative.")
-                continue
-            formatted_input = f"{tm_id:02}"
-        except ValueError:
-            print("Invalid input. Please enter a numeric traffic matrix ID (e.g., 06).")
-            continue
+    # while(1):
+    #     input_ = input("Enter the traffic matrix ID to be tested (e.g., 06) or type QUIT to exit: ").strip()
+    
+    #     if input_.upper() == 'QUIT':
+    #         break
+        
+    #     if not input_:
+    #         print("Input cannot be empty. Please enter a valid ID or QUIT.")
+    #         continue
+
+    #     try:
+    #         tm_id = int(input_)
+    #         if tm_id < 0:
+    #             print("Traffic matrix ID must be non-negative.")
+    #             continue
+    #         formatted_input = f"{tm_id:02}"
+    #     except ValueError:
+    #         print("Invalid input. Please enter a numeric traffic matrix ID (e.g., 06).")
+    #         continue
+    # --- 2. 開 Ryu controller -----------------------------------------
+
+    # ====== 直接寫死要測的 TM list ======
+    tm_list = [3, 10, 12, 14, 21]
+    for tm_id in tm_list:
+        formatted_input = f"{tm_id:02}"
+        print(f"\n===== Testing TM {formatted_input} =====")
 
         # --- 3. 啟動 DRL 訓練 ---------------------------------------------
         print(f"Start DRL for traffic matrix {formatted_input} ...")
