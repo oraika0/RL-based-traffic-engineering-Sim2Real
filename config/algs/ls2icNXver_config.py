@@ -23,5 +23,6 @@ config = {
     "epsilon_second_phase": 0,
     "use_delta_reward": False,
     "use_delay_only":True,
-    "reward_mode":"bwd_only"
+    "reward_mode":"bwd_only",
+    "sim_training":True
 }

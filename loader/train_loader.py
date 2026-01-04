@@ -13,8 +13,8 @@ import csv
 from algs import REGISTRY as algs_REGISTRY
 from numpy import random
 from types import SimpleNamespace
+from datetime import datetime
 
-import os
 import sys
 import gym
 from gym.envs.registration import register
@@ -66,6 +66,7 @@ def seed_torch(seed):
     torch.backends.cudnn.benchmark = False
 
 def training(config):
+    log_file = write_training_config_log(config)
     agents = algs_REGISTRY[config["algs_name"]](SimpleNamespace(**config))
     gen_link_index(config)
     mask, link_indices = get_mask(config)
@@ -89,19 +90,59 @@ def training(config):
     reward_list_loss = []
     loss_logs = {}
     
+    model_result_dir = os.path.join(os.getcwd(), "results", config["algs_name"])
+
     if config.get("rnn", False):
         agents.hidden_states = agents.init_hidden(agents.actor, 1)
     
+    print(config)
     waiting_time = 30
     print("waiting ",waiting_time," second, then start training")
     time.sleep(waiting_time)
     
+    if config.get("sim_training", False):
+        print ("======sim training======")
+        # ---------- 1. 建 sim train 用的 graph env ----------
+        dataset_root_folder = os.path.join(os.getcwd(), "A-Traffic-Engineering-Method-Using-RouteNet-Based-Actor-Critic-Learning-in-SDN-Routing-main","Enero_datasets", "dataset_sing_top", "data", "results_my_3_tops_unif_05-1")
+        dataset_folder_name = "NEW_Geant"
+        dataset_folder_name = os.path.join(dataset_root_folder, dataset_folder_name)
+
+        env_train = gym.make("GraphEnv-v16")
+        env_train.seed(9)
+        env_train.use_K_path = True
+
+        topo_name = "Geant"
+        K = config["action_dim"]
+        percentage_demands = config["percentage_demands"]
+
+        env_train.generate_environment(
+            dataset_folder_name + "/EVALUATE",
+            topo_name,
+            EPISODE_LENGTH=0,
+            K=K,
+            X=percentage_demands
+        )
+
+
+    tm_duration_steps =  config["tm_duration_training"] // 10
     while True:
         time_in = time.time()
-        step += 1
-        state, mlu, global_state = get_state(config, mask, link_indices)  
         
-        all_reward,all_reward_indicator, loss_value_path, delay_value_path = path_metrics_to_reward(config)
+
+        if (config.get("sim_training", False) == False):
+            state, mlu, global_state = get_state(config, mask, link_indices)
+        else:
+            tm_index = (step // tm_duration_steps) % len(config["tm_list_train"]) 
+            # mod 是因為 tm_duration_step 可能會不是整數被裁小 如果不用 mod 循環可能會爆出 tm_list_train
+            tm_id = config["tm_list_train"][tm_index]
+
+            state, mlu, global_state = env_train.reset_and_get_state_by_NX(config, mask, model_result_dir, tm_id)
+        step += 1
+        if (config.get("sim_training", False) == False):
+            all_reward,all_reward_indicator, loss_value_path, delay_value_path = path_metrics_to_reward(config)
+        else:
+            all_reward,all_reward_indicator, loss_value_path, delay_value_path = path_metrics_to_reward(config)
+            
         drl_paths = {}
         agent_info = {}
         start_time = time.time()
@@ -137,7 +178,12 @@ def training(config):
             
         if step >= 3:
             agents.append_sample(agent_info_memory, input_state, agent_reward_list)
-                
+            # agent_info_memory 裡面存的是step-1 step-2 的 2筆歷史資料 (s,a)
+            # append_sample 裡面還要對齊  state_tm1,action_tm2,input_state(就是t),agent_reward_list(t)
+            # 有 action delay、reward delay 的長 （s1,a0,r2,s2）
+            # sim 的就是                          (s1,a1,r2,s2)
+            # 正常來講sim 可以從 (s0,a0,r1,s1) 但懶的搞了 直接在 agent append_sample裡面把s跟a對齊就好 就是從(s1,a1,r2,s2)開始
+
             agent_info_memory.pop(0)
             
         if len(agents.memory) > agents.batch_size:
@@ -164,6 +210,7 @@ def training(config):
         if step == config["total_timestep"]:
             model_path = f'./results/{config["algs_name"]}/model'
             agents.save_model(model_path)
+            mark_training_finished(log_file)
             return
 
         output_all_path = os.path.join(out_dir, "output_all.txt")
@@ -190,8 +237,9 @@ def training(config):
             epsilon -= (epsilon_ini - 0.1)/config["epsilon_first_phase"]
         elif epsilon > epsilon_final:
             epsilon -= (0.1 - epsilon_final)/config["epsilon_second_phase"]
-        if time_end - time_in < 10 :
-            time.sleep(10 - (time_end - time_in))
+        if (config.get("sim_training", False) == False):
+            if time_end - time_in < 10 :
+                time.sleep(10 - (time_end - time_in))
         
 def testing(config):
     # test single TM
@@ -221,8 +269,8 @@ def testing_sacd_nx(config):
             writer = csv.writer(csvfile)
             writer.writerow(["avg_delay", "avg_packet_loss", "avg_throughput", "max_link_utilization"])
 
-    
-    # ---------- 1. 建 SACD 用的 graph env ----------
+
+    # ---------- 1. 建 SACD 專用的執行決策用的 graph env 來給定 action 以在 MN 中 eval----------
     env_eval = gym.make("GraphEnv-v16")
     env_eval.seed(9)
     env_eval.use_K_path = True
@@ -391,8 +439,8 @@ def testing_ma(config):
         agents.hidden_states = agents.init_hidden(agents.actor, 1)
     
     while True:
-        time_in = time.time()
         state, _, global_state = get_state(config, mask, link_indices)
+        time_in = time.time()
         drl_paths = {}
         agent_index = 0
         
@@ -471,8 +519,8 @@ def testing_anime(config):
     time.sleep(waiting_time)
     
     while True:
-        time_in = time.time()
         state, _, global_state = get_state(config, mask, link_indices)
+        time_in = time.time()
         drl_paths = {}
         agent_index = 0
 
@@ -724,6 +772,19 @@ def path_metrics_to_reward(config):
                 rewards_indicator[i][j] = rewards_actions_indicator
     return rewards_dic, rewards_indicator, loss_value,delay_value
 
+# def build_paths_metrics_dict_from_env(env_data):
+#     paths_metrics_dict = {}
+
+#     for i in env_data:
+#         paths_metrics_dict[i] = {}
+#         for j in env_data[i]:
+#             paths_metrics_dict[i][j] = {}
+#             for m in ['bwd_paths', 'delay_paths', 'loss_paths']:
+#                 raw = env_data[i][j][m]      # list length = num_actions
+#                 norm = normalize_list(raw)  # 你可以先用 min-max
+#                 paths_metrics_dict[i][j][m] = [raw, norm]
+
+#     return paths_metrics_dict
 
 def normalize(value, minD, maxD, min_val, max_val):
     if max_val == min_val:
@@ -791,8 +852,8 @@ def load_bwd_table(bw_file_path, link_indices, bidirectional=True):
         bwd[idx] = link_bwd_map.get((src, dst), 100000.0)  # default safety value
 
     return bwd
-
 def get_state(config, masks, link_indices): # get the current network state
+
     num_links = int(len(link_indices) / 2)
     global_state_2d = np.zeros((num_links, 3), dtype=float)
 
@@ -813,6 +874,7 @@ def get_state(config, masks, link_indices): # get the current network state
         if (node1, node2) in link_indices:
             index = link_indices[(node1, node2)]
 
+            # cur_bwd 是剩餘容量
             cur_bwd = row['bwd']
             cur_delay = row['delay'] + 1e-6
             cur_pkloss = row['pkloss']
@@ -837,7 +899,7 @@ def reward(src, dst, paths_metrics_dict, act, metrics,config):
     beta2=1
     beta3=1
     if ((config.get("reward_mode", "all"))=="bwd_only"):
-        print("use bwd for reward only")
+        # print("use bwd for reward only")
         beta1=1
         beta2=0
         beta3=0
@@ -1038,3 +1100,45 @@ def add_link(node1, node2):
     else:
         index = len(link_index) 
         link_index[link] = index
+
+
+def write_training_config_log(config):
+    # 時間字串
+    start_time = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+    # 路徑
+    base_dir = os.getcwd()
+    log_dir = os.path.join(
+        base_dir,
+        "results",
+        config["algs_name"],
+        "training_config_log"
+    )
+    os.makedirs(log_dir, exist_ok=True)
+
+    # 檔名
+    log_path = os.path.join(log_dir, f"{start_time}.json")
+
+    # 寫入初始內容
+    log_data = {
+        "start_time": start_time,
+        "config": config,
+        "finish_time": None
+    }
+
+    with open(log_path, "w") as f:
+        json.dump(log_data, f, indent=4)
+
+    return log_path
+
+def mark_training_finished(log_path):
+    from datetime import datetime
+    finish_time = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+    with open(log_path, "r") as f:
+        log_data = json.load(f)
+
+    log_data["finish_time"] = finish_time
+
+    with open(log_path, "w") as f:
+        json.dump(log_data, f, indent=4)

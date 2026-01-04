@@ -288,6 +288,12 @@ class Manager(app_manager.RyuApp):
                 if src != dst:
                     k_paths = self.get_k_paths_nodes(shortest_paths,src,dst)
                     bwd_paths_nodes, delay_paths_nodes, loss_paths_nodes = self.metrics_links_kpaths(k_paths,bwd_links,delay_links,loss_links)      
+                    print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+                    # print(k_paths.shape)
+                    # print(bwd_links.shape)
+                    # print(bwd_links)
+                    # print(delay_links.shape)
+                    # print(delay_links)
                     # print('---',src,dst,bwd_paths_nodes, delay_paths_nodes, loss_paths_nodes)
                     self.paths_metrics[src][dst][metrics[0]] = [bwd_paths_nodes]
                     self.paths_metrics[src][dst][metrics[1]] = [delay_paths_nodes]

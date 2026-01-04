@@ -75,6 +75,9 @@ def main():
     args = parser.parse_args()
 
     env_cfg, alg_cfg, ctrl_cfg = config.get(args.env, args.alg, args.ctrl)
+    print(env_cfg)
+    print(alg_cfg)
+    print(ctrl_cfg)
 
     init_result_dirs(alg_cfg)
     init_paths(env_cfg, alg_cfg)

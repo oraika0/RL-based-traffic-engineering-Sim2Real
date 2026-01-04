@@ -260,6 +260,7 @@ def initialize_weights_kaiming(layer):
     
 class ls2ic_agent():
     def __init__(self, args):
+        self.args = args
         self.num_agents = args.num_agents
         self.action_dim = args.action_dim
         self.seq_dim = args.num_link
@@ -321,7 +322,7 @@ class ls2ic_agent():
             state_tensor = state_tensor.unsqueeze(0)
         # (1, num_agents, num_links, num_link_fea)
         # batch
-        
+
         with torch.no_grad():
             q_value, self.hidden_states, _ = self.actor(state_tensor, self.hidden_states)
         
@@ -336,8 +337,12 @@ class ls2ic_agent():
 
     def append_sample(self, info, next_state, reward):
         state = info[1].get("input_state")
-        actions = info[0].get("action")
-        logits = info[0].get("logits")
+        if (getattr(self.args, 'sim_training', False) == True):
+            actions = info[1].get("action")
+            logits = info[1].get("logits")
+        else:
+            actions = info[0].get("action")
+            logits = info[0].get("logits")
         self.memory.append((state, actions, logits, next_state, reward))
     
     def sample_window(self, window_size):
