@@ -921,10 +921,14 @@ def state_to_action(config): # 20 paths according src,dst
         paths = json.load(json_file)
     column, row = size, size
     paths_20 = [[0]*row for _ in range(column)]
+    print("================================")
+    print(f"k_paths loaded from {file}")
     for i in range(1, size):
         for j in range(1, size):
             if i != j:
                 paths_20[i][j] = paths[str(i)][str(j)]
+                print(len(paths[str(i)][str(j)]))
+    print("================================")
     return paths_20
     
 def compute_network_metrics(config):

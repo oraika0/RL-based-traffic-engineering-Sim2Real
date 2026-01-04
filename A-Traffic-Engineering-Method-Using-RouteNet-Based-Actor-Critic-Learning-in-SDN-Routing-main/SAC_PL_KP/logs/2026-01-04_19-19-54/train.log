@@ -1,0 +1,13 @@
+2026-01-04 19:19:59,270 | INFO | 開始訓練
+2026-01-04 19:19:59,270 | INFO | ============================================================
+2026-01-04 19:19:59,270 | INFO | Episode 0 START
+2026-01-04 19:19:59,775 | INFO | Episode 0 | Train topo 0 time: 0.50 s
+2026-01-04 19:19:59,775 | INFO | Episode 0 | Total train time: 0.51 s
+2026-01-04 19:20:04,137 | INFO | Episode 0 | Eval time: 4.36 s
+2026-01-04 19:20:13,229 | INFO | Episode 0 | Eval time old : 9.09 s
+2026-01-04 19:20:13,310 | INFO | Episode 0 END | Total time: 14.04 s | Train: 0.51 s | Eval: 4.36 s | Eval_old: 9.09 s | 
+2026-01-04 19:20:13,311 | INFO | ============================================================
+2026-01-04 19:20:13,311 | INFO | Episode 1 START
+2026-01-04 19:20:13,657 | INFO | Episode 1 | Train topo 0 time: 0.35 s
+2026-01-04 19:20:13,657 | INFO | Episode 1 | Total train time: 0.35 s
+2026-01-04 19:20:18,015 | INFO | Episode 1 | Eval time: 4.36 s

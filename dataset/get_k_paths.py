@@ -5,7 +5,19 @@ from itertools import islice
 
 def k_shortest_paths(graph, src, dst, k, weight='weight'):
     try:
-        return list(islice(nx.shortest_simple_paths(graph, src, dst, weight=weight), k))
+        path_gen = nx.shortest_simple_paths(graph, src, dst)
+        paths = list(islice(path_gen, k))
+        paths = sorted(paths, key=lambda p: (len(p), p))
+        # 裁切 / 補齊
+        if len(paths) >= k:
+            paths = paths[:k]
+        else:
+            last = paths[-1]
+            while len(paths) < k:
+                paths.append(last)
+
+        return paths
+        # return list(islice(nx.shortest_simple_paths(graph, src, dst, weight=weight), k))
     except nx.NetworkXNoPath:
         return []  # 如果沒有路徑，回傳空清單
 

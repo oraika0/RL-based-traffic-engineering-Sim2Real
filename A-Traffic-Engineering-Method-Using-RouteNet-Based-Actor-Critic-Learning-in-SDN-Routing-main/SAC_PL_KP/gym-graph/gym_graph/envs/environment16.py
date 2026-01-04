@@ -169,16 +169,51 @@ class Env16(gym.Env):
                     del self.allPaths[str(n1)+':'+str(n2)][path:len(self.allPaths[str(n1)+':'+str(n2)])]
                     gc.collect()
 
-    def k_shortest_path(self):
+    def k_shortest_path(self, dataset_folder_name):
         D = nx.DiGraph()
         for u, v in self.graph.edges():
             if not D.has_edge(u, v):
                 D.add_edge(u, v)
-        for n1 in range(0, self.numNodes):
-            for n2 in range(0, self.numNodes):
-                if n1 != n2:
-                    c = cycle(nx.shortest_simple_paths(D, n1, n2))
-                    self.allPaths[str(n1) + ':' + str(n2)] = list(next(c) for _ in range(self.K))
+
+        self.allPaths = {}
+
+        for n1 in range(self.numNodes):
+            for n2 in range(self.numNodes):
+                if n1 == n2:
+                    continue
+
+                # 產生「依 hop 遞增」的 simple paths
+                gen = nx.shortest_simple_paths(D, n1, n2)
+
+                paths = []
+                for p in gen:
+                    paths.append(p)
+                    if len(paths) >= self.K:
+                        break
+
+                if len(paths) == 0:
+                    raise RuntimeError(f"No path between {n1} and {n2}")
+
+                # hop 數優先，其次 lexicographical order
+                paths = sorted(paths, key=lambda p: (len(p), p))
+
+                # 裁切 / 補齊
+                if len(paths) >= self.K:
+                    paths = paths[:self.K]
+                else:
+                    last = paths[-1]
+                    while len(paths) < self.K:
+                        paths.append(last)
+
+                self.allPaths[f"{n1}:{n2}"] = paths
+
+
+        # 拿來人工檢查看有沒有對齊的而已
+        out_file = os.path.join(dataset_folder_name, "k_shortest_paths.json")
+        with open(out_file, "w") as f:
+            json.dump(self.allPaths, f, indent=2)
+
+        print(f"[k_shortest_path] saved to {out_file}")
         gc.collect()
 
     
@@ -627,7 +662,7 @@ class Env16(gym.Env):
 
         if self.use_K_path:
             self.compute_SPs()
-            self.k_shortest_path()
+            self.k_shortest_path(dataset_folder_name)
         else:
             self.compute_middlepoint_set_remove_rep_actions_no_loop()
 
@@ -852,7 +887,7 @@ class Env16(gym.Env):
                         self.graph[src][dst][0]['crossing_paths'].clear()
 
     def allocate_by_ma(self,model_result_dir):
-        with open(model_result_dir + "/k_paths.json", "r") as f:
+        with open(model_result_dir + "/drl_paths.json", "r") as f:
             k_paths_raw = json.load(f)
 
         k_paths = {}
