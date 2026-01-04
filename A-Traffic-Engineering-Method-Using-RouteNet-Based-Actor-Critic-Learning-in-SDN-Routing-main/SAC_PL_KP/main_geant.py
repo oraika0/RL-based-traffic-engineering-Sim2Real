@@ -12,6 +12,8 @@ import logging
 import os
 from datetime import datetime
 
+print("gym_graph loaded from:", gym_graph.__file__)
+
 # === 建立 run 專屬資料夾 ===
 run_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 run_dir = os.path.join("logs", run_time)

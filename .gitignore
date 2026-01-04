@@ -5,3 +5,6 @@ results/sacd_nx/Metrics/
 *.zip
 results/ls2icNXver/Metrics/
 results/ls2ic/Metrics/
+results/ls2ic/net_info.csv
+results/ls2ic/paths_metrics.json
+results/ls2ic/tm_snapshot.json
