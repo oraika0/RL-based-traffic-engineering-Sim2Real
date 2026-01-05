@@ -84,31 +84,57 @@ def main():
         
     os.environ["ALG_NAME"] = alg_cfg["algs_name"]
     os.environ["ENV_NAME"] = env_cfg["topology"]
-    # --- 2. 開 Ryu controller -----------------------------------------
-    ctrl_proc = spawn_controller(ctrl_cfg)
-    time.sleep(5)
+    if (alg_cfg.get("sim_training", False) == False):
+        
+        # --- 1. 先建拓樸 ---------------------------------------------------
+        print("Building topology ...")
+        net = env_loader.build_topo(env_cfg)
+        time.sleep(5)
 
-    # --- 1. 先建拓樸 ---------------------------------------------------
-    print("Building topology ...")
-    net = env_loader.build_topo(env_cfg)
+        # --- 2. 開 Ryu controller -----------------------------------------
+        ctrl_proc = spawn_controller(ctrl_cfg)
 
-    print("Controller spawned, wait 30 s ...")
-    time.sleep(30)
 
-    # --- 3. 啟動 DRL 訓練 ---------------------------------------------
-    print("Start DRL ...")
-    merged_cfg = {**env_cfg, **alg_cfg, **ctrl_cfg}   # SimpleNamespace 給 training()
-    drl_proc = spawn_drl(merged_cfg, args.mode)
-    
-    # --- 4. 啟動流量 ---------------------------------------------------
-    print("Start traffic ...")
-    env_loader.start_traffic(net, env_cfg, mode="train")
-    
-    # --- 5. 收尾 -------------------------------------------------------
-    print("Training finished, clean up.")
-    net.stop()
-    # os.killpg(os.getpgid(ctrl_proc.pid), signal.SIGTERM)
-    # os.killpg(os.getpgid(drl_proc.pid),  signal.SIGTERM)
+        print("Controller spawned, wait 30 s ...")
+        time.sleep(30)
+
+        # --- 3. 啟動 DRL 訓練 ---------------------------------------------
+        print("Start DRL ...")
+        merged_cfg = {**env_cfg, **alg_cfg, **ctrl_cfg}   # SimpleNamespace 給 training()
+        drl_proc = spawn_drl(merged_cfg, args.mode)
+        
+        # --- 4. 啟動流量 ---------------------------------------------------
+        print("Start traffic ...")
+        env_loader.start_traffic(net, env_cfg, mode="train")
+        
+        # --- 5. 收尾 -------------------------------------------------------
+        print("Training finished, clean up.")
+        net.stop()
+        # os.killpg(os.getpgid(ctrl_proc.pid), signal.SIGTERM)
+        # os.killpg(os.getpgid(drl_proc.pid),  signal.SIGTERM)
+    else:
+        # print("Simulated training mode enabled.")
+        # print("Start DRL ...")
+        # merged_cfg = {**env_cfg, **alg_cfg, **ctrl_cfg}   # SimpleNamespace 給 training()
+        # drl_proc = spawn_drl(merged_cfg, args.mode)
+        print("Simulated training mode enabled.")
+        print("Start DRL (no new terminal) ...")
+
+        import tempfile, json, subprocess
+
+        merged_cfg = {**env_cfg, **alg_cfg, **ctrl_cfg}
+
+        with tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=".json") as fp:
+            json.dump(merged_cfg, fp)
+            cfg_path = fp.name
+
+        cmd = (
+            f"source {merged_cfg['conda_sh']} && "
+            f"conda activate {merged_cfg['conda_env']} && "
+            f"python run_drl.py --merged_cfg {cfg_path} --mode {args.mode}"
+        )
+
+        subprocess.run(["bash", "-c", cmd])
 
 if __name__ == "__main__":
     main()

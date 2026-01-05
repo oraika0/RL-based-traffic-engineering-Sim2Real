@@ -870,7 +870,7 @@ class Env16(gym.Env):
         graph_file = self.dataset_folder_name+"/"+self.graph_topology_name+".graph"
         # This 'results_file' file is ignored!
         results_file = self.dataset_folder_name+"/res_"+self.graph_topology_name+"_"+str(tm_id)
-        tm_file = self.dataset_folder_name+"/TM/"+self.graph_topology_name+'.'+str(tm_id)+".demands"
+        tm_file = self.dataset_folder_name+"/TM/"+self.graph_topology_name+'.'+str(int(tm_id))+".demands"
         
         self.defoDatasetAPI = defoResults.Defo_results(graph_file,results_file)
         self.links_bw = self.defoDatasetAPI.links_bw

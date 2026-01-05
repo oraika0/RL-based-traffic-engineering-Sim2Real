@@ -14,7 +14,7 @@ from algs import REGISTRY as algs_REGISTRY
 from numpy import random
 from types import SimpleNamespace
 from datetime import datetime
-
+from functools import reduce
 import sys
 import gym
 from gym.envs.registration import register
@@ -116,7 +116,7 @@ def training(config):
         percentage_demands = config["percentage_demands"]
 
         env_train.generate_environment(
-            dataset_folder_name + "/EVALUATE",
+            dataset_folder_name + "/TRAIN",
             topo_name,
             EPISODE_LENGTH=0,
             K=K,
@@ -137,11 +137,13 @@ def training(config):
             tm_id = config["tm_list_train"][tm_index]
 
             state, mlu, global_state = env_train.reset_and_get_state_by_NX(config, mask, model_result_dir, tm_id)
+
         step += 1
+
         if (config.get("sim_training", False) == False):
             all_reward,all_reward_indicator, loss_value_path, delay_value_path = path_metrics_to_reward(config)
         else:
-            all_reward,all_reward_indicator, loss_value_path, delay_value_path = path_metrics_to_reward(config)
+            all_reward,all_reward_indicator, loss_value_path, delay_value_path = path_metrics_to_reward_sim(config)
             
         drl_paths = {}
         agent_info = {}
@@ -170,11 +172,13 @@ def training(config):
                    
         agent_info_memory.append(agent_info)
         reward_memory = agent_reward_list
+
         out_dir = f"./results/{config['algs_name']}"
-        os.makedirs(out_dir, exist_ok=True)
+        if (config.get("sim_training", False) == False):
+            os.makedirs(out_dir, exist_ok=True)
         
-        with open(os.path.join(out_dir, "drl_paths.json"),'w') as json_file:
-            json.dump(drl_paths, json_file, indent=2)
+            with open(os.path.join(out_dir, "drl_paths.json"),'w') as json_file:
+                json.dump(drl_paths, json_file, indent=2)
             
         if step >= 3:
             agents.append_sample(agent_info_memory, input_state, agent_reward_list)
@@ -772,19 +776,181 @@ def path_metrics_to_reward(config):
                 rewards_indicator[i][j] = rewards_actions_indicator
     return rewards_dic, rewards_indicator, loss_value,delay_value
 
-# def build_paths_metrics_dict_from_env(env_data):
-#     paths_metrics_dict = {}
+def path_metrics_to_reward_sim(env, config):
+    # 目前 delay loss 是寫死在裡面的 但目前應該用不到
+    """
+    Sim version of path_metrics_to_reward
+    - 不讀檔
+    - 直接用 env.graph + env.allPaths
+    - 完全對齊原本 reward / minmax / normalize 邏輯
+    """
+    paths_metrics_dict = {}
+    rewards_dic = {}
+    rewards_indicator = {}
+    loss_value = {}
+    delay_value = {}
 
-#     for i in env_data:
-#         paths_metrics_dict[i] = {}
-#         for j in env_data[i]:
-#             paths_metrics_dict[i][j] = {}
-#             for m in ['bwd_paths', 'delay_paths', 'loss_paths']:
-#                 raw = env_data[i][j][m]      # list length = num_actions
-#                 norm = normalize_list(raw)  # 你可以先用 min-max
-#                 paths_metrics_dict[i][j][m] = [raw, norm]
+    metrics = ['bwd_paths', 'delay_paths', 'loss_paths']
+    size = config["num_node"] + 1   # 1-based
 
-#     return paths_metrics_dict
+
+    for i in range(1, size):
+        paths_metrics_dict.setdefault(str(i), {})
+        for j in range(1, size):
+            if i != j:
+                paths_metrics_dict[str(i)].setdefault(str(j), {
+                    'bwd_paths': [],
+                    'delay_paths': [],
+                    'loss_paths': []
+                })
+
+    # ---------- 準備結構 ----------
+    for i in range(1, size):
+        rewards_dic.setdefault(str(i), {})
+        rewards_indicator.setdefault(str(i), {})
+        loss_value.setdefault(str(i), {})
+        delay_value.setdefault(str(i), {})
+        for j in range(1, size):
+            rewards_dic[str(i)].setdefault(str(j), {})
+            rewards_indicator[str(i)].setdefault(str(j), {})
+            loss_value[str(i)].setdefault(str(j), {})
+            delay_value[str(i)].setdefault(str(j), {})
+
+    # ---------- 主計算 ----------
+    for src in range(1, size):
+        for dst in range(1, size):
+            if src == dst:
+                continue
+
+            key = f"{src-1}:{dst-1}"
+            if key not in env.allPaths:
+                continue
+
+            k_paths = env.allPaths[key]   # list of paths (0-based nodes)
+
+            bwd_paths = []
+            delay_paths = []
+            loss_paths = []
+
+            # === 算每一條 path 的 raw metrics ===
+            for path in k_paths:
+                bwd_links = []
+                delay_links = []
+                loss_links = []
+
+                for i in range(len(path) - 1):
+                    u, v = path[i], path[i + 1]
+                    edge = env.graph[u][v][0]
+
+                    capacity = edge['capacity']
+                    used = edge['utilization']
+                    bwd = round(capacity - used, 6)
+                    # ---- bwd = 剩餘頻寬 ----
+                    bwd_links.append(bwd)
+
+                    # ---- delay / loss：目前 sim 沒有就給常數 ----
+                    delay_links.append(1e-6)
+                    loss_links.append(0)
+
+                # path aggregation（完全照你原本）
+                bwd_paths.append(calc_bwd_path(bwd_links))
+                delay_paths.append(calc_delay_path(delay_links))
+                loss_paths.append(calc_loss_path(loss_links))
+
+            # ---------- 存 raw（for indicator） ----------
+            loss_value[str(src)][str(dst)] = loss_paths
+            delay_value[str(src)][str(dst)] = delay_paths
+
+            # ---------- normalization（完全對齊） ----------
+            paths_metrics_dict[str(src)][str(dst)]['bwd_paths'].append(bwd_paths)
+            paths_metrics_dict[str(src)][str(dst)]['delay_paths'].append(delay_paths)
+            paths_metrics_dict[str(src)][str(dst)]['loss_paths'].append(loss_paths)
+
+    for i in paths_metrics_dict:
+        rewards_dic.setdefault(i,{})
+        rewards_indicator.setdefault(i,{})
+        loss_value.setdefault(i,{})
+        delay_value.setdefault(i,{})
+        for j in paths_metrics_dict[i]:
+            rewards_dic.setdefault(j,{})
+            rewards_indicator.setdefault(j,{})
+            loss_value.setdefault(j,{})
+            delay_value.setdefault(i,{})
+            loss_value[i][j] = paths_metrics_dict[str(i)][str(j)]['loss_paths'][0]
+            delay_value[i][j] = paths_metrics_dict[str(i)][str(j)]['delay_paths'][0]
+            for m in metrics:
+                if m == metrics[0]:
+                    bwd_cost = []
+                    for val in paths_metrics_dict[str(i)][str(j)][m][0]:
+                        bwd_cost.append(round(val, 15))
+                    paths_metrics_dict[str(i)][str(j)][m][0] = bwd_cost
+                    paths_metrics_minmax_dict[i][j][m]['max'] = max(paths_metrics_minmax_dict[i][j][m]['max'],max(paths_metrics_dict[str(i)][str(j)][m][0]))
+                    paths_metrics_minmax_dict[i][j][m]['min'] = min(paths_metrics_minmax_dict[i][j][m]['min'],min(paths_metrics_dict[str(i)][str(j)][m][0]))
+                    met_norm = [normalize(met_val, 0,100, paths_metrics_minmax_dict[i][j][m]['min'], max(paths_metrics_dict[str(i)][str(j)][m][0])) for met_val in paths_metrics_dict[str(i)][str(j)][m][0]]
+                elif m == metrics[1]:
+                    cost = [] 
+                    for val in paths_metrics_dict[str(i)][str(j)][m][0]:
+                        if val >1.5 : 
+                            temp = 1/val
+                            cost.append(round(temp, 15))
+                        else:
+                            cost.append(round(1/1.5, 15))
+                        #cost.append(round(-val - 1e-6, 15))
+                    paths_metrics_dict[str(i)][str(j)][m][0] = cost
+                    paths_metrics_minmax_dict[i][j][m]['max'] = max(paths_metrics_minmax_dict[i][j][m]['max'],max(cost))
+                    paths_metrics_minmax_dict[i][j][m]['min'] = min(paths_metrics_minmax_dict[i][j][m]['min'],min(cost))
+                    met_norm = [normalize(met_val, 0, 100, paths_metrics_minmax_dict[i][j][m]['min'], paths_metrics_minmax_dict[i][j][m]['max']) for met_val in paths_metrics_dict[str(i)][str(j)][m][0]]
+                elif m == metrics[2]:    
+                    cost = [] 
+                    for val in paths_metrics_dict[str(i)][str(j)][m][0]:
+                        if val > 0.001: #ensure minimum delay available
+                            temp = 1/val
+                            cost.append(round(temp, 15))
+                        else:
+                            cost.append(1/0.001)
+                        #cost.append(round(-val - 1e-6, 15))
+                    paths_metrics_dict[str(i)][str(j)][m][0] = cost
+                    paths_metrics_minmax_dict[i][j][m]['max'] = max(paths_metrics_minmax_dict[i][j][m]['max'],max(cost))
+                    paths_metrics_minmax_dict[i][j][m]['min'] = min(paths_metrics_minmax_dict[i][j][m]['min'],min(cost))
+                    met_norm = [normalize(met_val, 0, 100, paths_metrics_minmax_dict[i][j][m]['min'], paths_metrics_minmax_dict[i][j][m]['max']) for met_val in paths_metrics_dict[str(i)][str(j)][m][0]]
+                paths_metrics_dict[str(i)][str(j)][m].append(met_norm)
+    
+    for i in paths_metrics_dict:
+        for j in paths_metrics_dict[i]:
+            rewards_actions = []   
+            rewards_actions_indicator = []           
+            for act in range(20):
+                rewards_actions.append(reward(i,j,paths_metrics_dict,act,metrics,config))
+                rewards_actions_indicator.append(rewards_indicator_fun(i,j,paths_metrics_dict,act,metrics))
+                rewards_dic[i][j] = rewards_actions
+                rewards_indicator[i][j] = rewards_actions_indicator
+    return rewards_dic, rewards_indicator, loss_value,delay_value
+
+def calc_bwd_path(self,bwd_links_path):
+    '''
+    path = [link1, link2, link3]
+    path_bwd = min(bwd of all links)
+    '''
+    bwd_path = min(bwd_links_path)
+    return round(bwd_path,6)
+
+def calc_delay_path(self,delay_links_path):
+    '''
+    path = [link1, link2, link3]
+    path_ldelay = sum(delay of all links)
+    '''
+    delay_path = sum(delay_links_path)
+    return round(delay_path,6)
+
+def calc_loss_path(self,loss_links_path): 
+    '''
+    path = [link1, link2, link3]
+    path_loss = 1-[(1-loss_link1)*(1-loss_link2)*(1-loss_link3)]
+    '''
+    loss_links_path_ = [1-(i/100.0) for i in loss_links_path]
+    result_multi = reduce((lambda x, y: x * y), loss_links_path_)
+    loss_path = 1.0 - result_multi
+    return round(loss_path*100.0,6)
 
 def normalize(value, minD, maxD, min_val, max_val):
     if max_val == min_val:
