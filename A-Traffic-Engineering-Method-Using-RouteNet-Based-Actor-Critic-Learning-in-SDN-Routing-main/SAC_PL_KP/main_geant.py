@@ -1,3 +1,5 @@
+# 現在的eval 是用2000~2029的tm做評估
+
 import torch
 from SACD import SACD
 import gym
@@ -290,7 +292,7 @@ if __name__ == '__main__':
             eval_start_time = time.time()
             for topo in range(len(env_eval)):
                 for tm_id in range(EVALUATION_EPISODES):
-                    demand, src, dst = env_eval[topo].reset(tm_id=tm_id)
+                    demand, src, dst = env_eval[topo].reset(tm_id=tm_id+2000)
                     total_reward = 0
                     mlu_reward = 0
                     uti_reward = 0
