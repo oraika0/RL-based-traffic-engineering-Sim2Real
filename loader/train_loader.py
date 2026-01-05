@@ -113,7 +113,7 @@ def training(config):
 
         topo_name = "Geant"
         K = config["action_dim"]
-        percentage_demands = config["percentage_demands"]
+        percentage_demands = 15
 
         env_train.generate_environment(
             dataset_folder_name + "/TRAIN",

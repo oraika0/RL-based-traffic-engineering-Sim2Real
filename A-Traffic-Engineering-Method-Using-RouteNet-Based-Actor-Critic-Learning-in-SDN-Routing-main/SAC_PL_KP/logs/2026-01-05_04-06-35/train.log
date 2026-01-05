@@ -4948,3 +4948,83 @@
 2026-01-06 02:12:09,672 | INFO | Episode 618 START
 2026-01-06 02:12:37,452 | INFO | Episode 618 | Train topo 0 time: 27.78 s
 2026-01-06 02:13:12,659 | INFO | Episode 618 | Train topo 1 time: 35.21 s
+2026-01-06 02:13:44,269 | INFO | Episode 618 | Train topo 2 time: 31.60 s
+2026-01-06 02:13:44,269 | INFO | Episode 618 | Total train time: 94.60 s
+2026-01-06 02:13:51,889 | INFO | Episode 618 | Eval time: 7.62 s
+2026-01-06 02:13:52,855 | INFO | Episode 618 END | Total time: 103.18 s | Train: 94.60 s | Eval: 7.62 s
+2026-01-06 02:13:52,856 | INFO | ============================================================
+2026-01-06 02:13:52,856 | INFO | Episode 619 START
+2026-01-06 02:14:24,543 | INFO | Episode 619 | Train topo 0 time: 31.69 s
+2026-01-06 02:14:53,991 | INFO | Episode 619 | Train topo 1 time: 29.44 s
+2026-01-06 02:15:27,695 | INFO | Episode 619 | Train topo 2 time: 33.70 s
+2026-01-06 02:15:27,701 | INFO | Episode 619 | Total train time: 94.84 s
+2026-01-06 02:15:37,382 | INFO | Episode 619 | Eval time: 9.68 s
+2026-01-06 02:15:38,209 | INFO | Episode 619 END | Total time: 105.35 s | Train: 94.84 s | Eval: 9.68 s
+2026-01-06 02:15:38,209 | INFO | ============================================================
+2026-01-06 02:15:38,209 | INFO | Episode 620 START
+2026-01-06 02:16:12,933 | INFO | Episode 620 | Train topo 0 time: 34.72 s
+2026-01-06 02:16:49,113 | INFO | Episode 620 | Train topo 1 time: 36.18 s
+2026-01-06 02:17:23,243 | INFO | Episode 620 | Train topo 2 time: 34.12 s
+2026-01-06 02:17:23,243 | INFO | Episode 620 | Total train time: 105.03 s
+2026-01-06 02:17:32,508 | INFO | Episode 620 | Eval time: 9.26 s
+2026-01-06 02:17:33,334 | INFO | Episode 620 END | Total time: 115.12 s | Train: 105.03 s | Eval: 9.26 s
+2026-01-06 02:17:33,334 | INFO | ============================================================
+2026-01-06 02:17:33,334 | INFO | Episode 621 START
+2026-01-06 02:18:09,883 | INFO | Episode 621 | Train topo 0 time: 36.55 s
+2026-01-06 02:18:43,530 | INFO | Episode 621 | Train topo 1 time: 33.64 s
+2026-01-06 02:19:16,205 | INFO | Episode 621 | Train topo 2 time: 32.67 s
+2026-01-06 02:19:16,215 | INFO | Episode 621 | Total train time: 102.88 s
+2026-01-06 02:19:23,370 | INFO | Episode 621 | Eval time: 7.15 s
+2026-01-06 02:19:24,433 | INFO | Episode 621 END | Total time: 111.10 s | Train: 102.88 s | Eval: 7.15 s
+2026-01-06 02:19:24,434 | INFO | ============================================================
+2026-01-06 02:19:24,434 | INFO | Episode 622 START
+2026-01-06 02:19:53,317 | INFO | Episode 622 | Train topo 0 time: 28.88 s
+2026-01-06 02:20:24,448 | INFO | Episode 622 | Train topo 1 time: 31.13 s
+2026-01-06 02:20:53,312 | INFO | Episode 622 | Train topo 2 time: 28.86 s
+2026-01-06 02:20:53,313 | INFO | Episode 622 | Total train time: 88.88 s
+2026-01-06 02:21:00,416 | INFO | Episode 622 | Eval time: 7.10 s
+2026-01-06 02:21:01,486 | INFO | Episode 622 END | Total time: 97.05 s | Train: 88.88 s | Eval: 7.10 s
+2026-01-06 02:21:01,487 | INFO | ============================================================
+2026-01-06 02:21:01,488 | INFO | Episode 623 START
+2026-01-06 02:21:35,067 | INFO | Episode 623 | Train topo 0 time: 33.58 s
+2026-01-06 02:22:07,515 | INFO | Episode 623 | Train topo 1 time: 32.44 s
+2026-01-06 02:22:38,548 | INFO | Episode 623 | Train topo 2 time: 31.03 s
+2026-01-06 02:22:38,558 | INFO | Episode 623 | Total train time: 97.07 s
+2026-01-06 02:22:45,728 | INFO | Episode 623 | Eval time: 7.17 s
+2026-01-06 02:22:46,801 | INFO | Episode 623 END | Total time: 105.31 s | Train: 97.07 s | Eval: 7.17 s
+2026-01-06 02:22:46,801 | INFO | ============================================================
+2026-01-06 02:22:46,802 | INFO | Episode 624 START
+2026-01-06 02:23:17,800 | INFO | Episode 624 | Train topo 0 time: 31.00 s
+2026-01-06 02:23:56,245 | INFO | Episode 624 | Train topo 1 time: 38.45 s
+2026-01-06 02:24:32,599 | INFO | Episode 624 | Train topo 2 time: 36.35 s
+2026-01-06 02:24:32,600 | INFO | Episode 624 | Total train time: 105.80 s
+2026-01-06 02:24:42,509 | INFO | Episode 624 | Eval time: 9.91 s
+2026-01-06 02:24:43,344 | INFO | Episode 624 END | Total time: 116.54 s | Train: 105.80 s | Eval: 9.91 s
+2026-01-06 02:24:43,344 | INFO | ============================================================
+2026-01-06 02:24:43,344 | INFO | Episode 625 START
+2026-01-06 02:25:20,238 | INFO | Episode 625 | Train topo 0 time: 36.89 s
+2026-01-06 02:25:54,431 | INFO | Episode 625 | Train topo 1 time: 34.18 s
+2026-01-06 02:26:30,445 | INFO | Episode 625 | Train topo 2 time: 36.01 s
+2026-01-06 02:26:30,451 | INFO | Episode 625 | Total train time: 107.11 s
+2026-01-06 02:26:39,719 | INFO | Episode 625 | Eval time: 9.27 s
+2026-01-06 02:26:40,548 | INFO | Episode 625 END | Total time: 117.20 s | Train: 107.11 s | Eval: 9.27 s
+2026-01-06 02:26:40,549 | INFO | ============================================================
+2026-01-06 02:26:40,549 | INFO | Episode 626 START
+2026-01-06 02:27:13,060 | INFO | Episode 626 | Train topo 0 time: 32.51 s
+2026-01-06 02:27:50,836 | INFO | Episode 626 | Train topo 1 time: 37.77 s
+2026-01-06 02:28:25,682 | INFO | Episode 626 | Train topo 2 time: 34.84 s
+2026-01-06 02:28:25,682 | INFO | Episode 626 | Total train time: 105.13 s
+2026-01-06 02:28:35,047 | INFO | Episode 626 | Eval time: 9.36 s
+2026-01-06 02:28:35,888 | INFO | Episode 626 END | Total time: 115.34 s | Train: 105.13 s | Eval: 9.36 s
+2026-01-06 02:28:35,888 | INFO | ============================================================
+2026-01-06 02:28:35,889 | INFO | Episode 627 START
+2026-01-06 02:29:14,153 | INFO | Episode 627 | Train topo 0 time: 38.26 s
+2026-01-06 02:29:49,398 | INFO | Episode 627 | Train topo 1 time: 35.24 s
+2026-01-06 02:30:26,496 | INFO | Episode 627 | Train topo 2 time: 37.10 s
+2026-01-06 02:30:26,506 | INFO | Episode 627 | Total train time: 110.62 s
+2026-01-06 02:30:34,388 | INFO | Episode 627 | Eval time: 7.88 s
+2026-01-06 02:30:35,390 | INFO | Episode 627 END | Total time: 119.50 s | Train: 110.62 s | Eval: 7.88 s
+2026-01-06 02:30:35,391 | INFO | ============================================================
+2026-01-06 02:30:35,391 | INFO | Episode 628 START
+2026-01-06 02:31:04,875 | INFO | Episode 628 | Train topo 0 time: 29.48 s
+2026-01-06 02:31:42,922 | INFO | Episode 628 | Train topo 1 time: 38.05 s
