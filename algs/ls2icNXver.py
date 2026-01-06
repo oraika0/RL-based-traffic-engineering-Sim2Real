@@ -330,7 +330,6 @@ class ls2icNXver_agent():
         if state_tensor.dim() == 3:
             state_tensor = state_tensor.unsqueeze(0)
 
-        print("DEBUG state_tensor shape:", state_tensor.shape)
         with torch.no_grad():
             q_value, self.hidden_states, _ = self.actor(state_tensor, self.hidden_states)
         
@@ -376,11 +375,16 @@ class ls2icNXver_agent():
             batch_next_states.append(np.array(next_states))
             batch_rewards.append(np.array(rewards))
         
-        batch_states = torch.tensor(batch_states, dtype=torch.float32, device=self.device)
-        batch_actions = torch.tensor(batch_actions, dtype=torch.long, device=self.device)
-        batch_logits = torch.tensor(batch_logits, dtype=torch.float32, device=self.device)
-        batch_next_states = torch.tensor(batch_next_states, dtype=torch.float32, device=self.device)
-        batch_rewards = torch.tensor(batch_rewards, dtype=torch.float32, device=self.device)
+        # batch_states = torch.tensor(batch_states, dtype=torch.float32, device=self.device)
+        # batch_actions = torch.tensor(batch_actions, dtype=torch.long, device=self.device)
+        # batch_logits = torch.tensor(batch_logits, dtype=torch.float32, device=self.device)
+        # batch_next_states = torch.tensor(batch_next_states, dtype=torch.float32, device=self.device)
+        # batch_rewards = torch.tensor(batch_rewards, dtype=torch.float32, device=self.device)
+        batch_states = torch.from_numpy(np.array(batch_states)).float().to(self.device)
+        batch_actions = torch.from_numpy(np.array(batch_actions)).long().to(self.device)
+        batch_logits = torch.from_numpy(np.array(batch_logits)).float().to(self.device)
+        batch_next_states = torch.from_numpy(np.array(batch_next_states)).float().to(self.device)
+        batch_rewards = torch.from_numpy(np.array(batch_rewards)).float().to(self.device)
         
         return batch_states, batch_actions, batch_logits, batch_next_states, batch_rewards
     

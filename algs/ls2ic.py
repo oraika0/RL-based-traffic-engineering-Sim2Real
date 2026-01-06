@@ -372,11 +372,16 @@ class ls2ic_agent():
             batch_next_states.append(np.array(next_states))
             batch_rewards.append(np.array(rewards))
         
-        batch_states = torch.tensor(batch_states, dtype=torch.float32, device=self.device)
-        batch_actions = torch.tensor(batch_actions, dtype=torch.long, device=self.device)
-        batch_logits = torch.tensor(batch_logits, dtype=torch.float32, device=self.device)
-        batch_next_states = torch.tensor(batch_next_states, dtype=torch.float32, device=self.device)
-        batch_rewards = torch.tensor(batch_rewards, dtype=torch.float32, device=self.device)
+        # batch_states = torch.tensor(batch_states, dtype=torch.float32, device=self.device)
+        # batch_actions = torch.tensor(batch_actions, dtype=torch.long, device=self.device)
+        # batch_logits = torch.tensor(batch_logits, dtype=torch.float32, device=self.device)
+        # batch_next_states = torch.tensor(batch_next_states, dtype=torch.float32, device=self.device)
+        # batch_rewards = torch.tensor(batch_rewards, dtype=torch.float32, device=self.device)
+        batch_states = torch.from_numpy(np.array(batch_states)).float().to(self.device)
+        batch_actions = torch.from_numpy(np.array(batch_actions)).long().to(self.device)
+        batch_logits = torch.from_numpy(np.array(batch_logits)).float().to(self.device)
+        batch_next_states = torch.from_numpy(np.array(batch_next_states)).float().to(self.device)
+        batch_rewards = torch.from_numpy(np.array(batch_rewards)).float().to(self.device)
         
         return batch_states, batch_actions, batch_logits, batch_next_states, batch_rewards
     

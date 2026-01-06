@@ -1,5 +1,5 @@
 config = {
-    "topology": "geant",
+    "topology": "hugeGeantForSim",
     "tm_name": "23nodes",
     "tm_prefix": "dataset/geant_traffic/23node/TM-{tm_id}/",
     "num_link": 37,
@@ -11,7 +11,6 @@ config = {
     "tm_duration_training": 2000,
     "tm_duration_test": 30,
     "tm_list_train": ['13','15','17','19','20','22','23','00','01','02','04','07','08','09','11'],
-    "tm_list_test": ['03', '10', '12', '14', '21'],
     "k_paths_file": "dataset/geant_traffic/k_paths.json",
     "bw_file": "dataset/geant_traffic/bw_r.txt",
     "link_bw_default": 100,

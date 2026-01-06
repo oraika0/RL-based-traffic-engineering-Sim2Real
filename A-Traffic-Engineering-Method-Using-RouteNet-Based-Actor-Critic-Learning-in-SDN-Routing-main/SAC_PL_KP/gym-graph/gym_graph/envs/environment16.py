@@ -209,11 +209,11 @@ class Env16(gym.Env):
 
 
         # 拿來人工檢查看有沒有對齊的而已
-        out_file = os.path.join(dataset_folder_name, "k_shortest_paths.json")
-        with open(out_file, "w") as f:
-            json.dump(self.allPaths, f, indent=2)
+        # out_file = os.path.join(dataset_folder_name, "k_shortest_paths.json")
+        # with open(out_file, "w") as f:
+        #     json.dump(self.allPaths, f, indent=2)
 
-        print(f"[k_shortest_path] saved to {out_file}")
+        # print(f"[k_shortest_path] saved to {out_file}")
         gc.collect()
 
     

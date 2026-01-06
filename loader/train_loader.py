@@ -96,9 +96,11 @@ def training(config):
         agents.hidden_states = agents.init_hidden(agents.actor, 1)
     
     print(config)
-    waiting_time = 30
-    print("waiting ",waiting_time," second, then start training")
-    time.sleep(waiting_time)
+
+    if (config.get("sim_training", False) == False):
+        waiting_time = 30
+        print("waiting ",waiting_time," second, then start training")
+        time.sleep(waiting_time)
     
     if config.get("sim_training", False):
         print ("======sim training======")
@@ -143,7 +145,7 @@ def training(config):
         if (config.get("sim_training", False) == False):
             all_reward,all_reward_indicator, loss_value_path, delay_value_path = path_metrics_to_reward(config)
         else:
-            all_reward,all_reward_indicator, loss_value_path, delay_value_path = path_metrics_to_reward_sim(config)
+            all_reward,all_reward_indicator, loss_value_path, delay_value_path = path_metrics_to_reward_sim(env_train, config)
             
         drl_paths = {}
         agent_info = {}
@@ -174,11 +176,10 @@ def training(config):
         reward_memory = agent_reward_list
 
         out_dir = f"./results/{config['algs_name']}"
-        if (config.get("sim_training", False) == False):
-            os.makedirs(out_dir, exist_ok=True)
+        os.makedirs(out_dir, exist_ok=True)
         
-            with open(os.path.join(out_dir, "drl_paths.json"),'w') as json_file:
-                json.dump(drl_paths, json_file, indent=2)
+        with open(os.path.join(out_dir, "drl_paths.json"),'w') as json_file:
+            json.dump(drl_paths, json_file, indent=2)
             
         if step >= 3:
             agents.append_sample(agent_info_memory, input_state, agent_reward_list)
@@ -233,7 +234,9 @@ def training(config):
             "output_delay.txt":    reward_list_delay,
             "output_loss.txt":     reward_list_loss,
         })
-        
+
+        if (config.get("sim_training", False) == True):
+            print(f"episode time : {time.time()-time_in} sec")
         print("------------------------------------------ step %d ------------------------------------------" % step)
         print("------------------------------------------  epsilon  %f ------------------------------------------   " % epsilon)
         time_end = time.time()
@@ -926,7 +929,7 @@ def path_metrics_to_reward_sim(env, config):
                 rewards_indicator[i][j] = rewards_actions_indicator
     return rewards_dic, rewards_indicator, loss_value,delay_value
 
-def calc_bwd_path(self,bwd_links_path):
+def calc_bwd_path(bwd_links_path):
     '''
     path = [link1, link2, link3]
     path_bwd = min(bwd of all links)
@@ -934,7 +937,7 @@ def calc_bwd_path(self,bwd_links_path):
     bwd_path = min(bwd_links_path)
     return round(bwd_path,6)
 
-def calc_delay_path(self,delay_links_path):
+def calc_delay_path(delay_links_path):
     '''
     path = [link1, link2, link3]
     path_ldelay = sum(delay of all links)
@@ -942,7 +945,7 @@ def calc_delay_path(self,delay_links_path):
     delay_path = sum(delay_links_path)
     return round(delay_path,6)
 
-def calc_loss_path(self,loss_links_path): 
+def calc_loss_path(loss_links_path): 
     '''
     path = [link1, link2, link3]
     path_loss = 1-[(1-loss_link1)*(1-loss_link2)*(1-loss_link3)]
@@ -973,7 +976,8 @@ def get_mask(config):
             link_indices[(node2, node1)] = link_index_counter
             link_index_counter += 1
 
-    num_links = int(len(link_indices)/2)
+    # num_links = int(len(link_indices)/2)
+    num_links = config["num_link"]
 
     with open(config["k_paths_file"], 'r') as f:
         k_paths = json.load(f)
@@ -1087,14 +1091,13 @@ def state_to_action(config): # 20 paths according src,dst
         paths = json.load(json_file)
     column, row = size, size
     paths_20 = [[0]*row for _ in range(column)]
-    print("================================")
     print(f"k_paths loaded from {file}")
     for i in range(1, size):
         for j in range(1, size):
             if i != j:
                 paths_20[i][j] = paths[str(i)][str(j)]
-                print(len(paths[str(i)][str(j)]))
-    print("================================")
+                # print(len(paths[str(i)][str(j)]))
+
     return paths_20
     
 def compute_network_metrics(config):
