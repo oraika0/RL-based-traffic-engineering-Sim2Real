@@ -79,10 +79,11 @@ def main():
         
     os.environ["ALG_NAME"] = alg_cfg["algs_name"]
     os.environ["ENV_NAME"] = env_cfg["topology"]
+
     # --- 1. 先建拓樸 ---------------------------------------------------
     print("Building topology ...")
     net = env_loader.build_topo(env_cfg)
-
+    time.sleep(5)
     # --- 2. 開 Ryu controller -----------------------------------------
     ctrl_proc = spawn_controller(ctrl_cfg)
 

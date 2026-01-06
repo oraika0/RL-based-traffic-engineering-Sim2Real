@@ -1,5 +1,5 @@
 config = {
-    "topology": "hugeGeantForSim",
+    "topology": "geant",
     "tm_name": "23nodes",
     "tm_prefix": "dataset/geant_traffic/23node/TM-{tm_id}/",
     "num_link": 37,
