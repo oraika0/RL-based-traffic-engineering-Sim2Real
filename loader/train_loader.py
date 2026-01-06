@@ -320,8 +320,8 @@ def testing_sacd_nx(config):
     
     # 切換model的位置
     # model_dir = os.path.join(model_dir, "Enero_3top_15_B_SAC2025-12-31_01-31-35trained_with_Geant")
-    model_dir = os.path.join(model_dir, "modelsEnero_3top_15_B_SAC66")
-    model_file_name = "actor_final.pt"
+    model_dir = os.path.join(model_dir, "Enero_3top_15_B_SAC2026-01-05_04-06-35")
+    model_file_name = "actor_23.pt"
 
     SACD_Agent.actor.load_state_dict(torch.load(os.path.join(model_dir, model_file_name)))
     SACD_Agent.actor.eval()
